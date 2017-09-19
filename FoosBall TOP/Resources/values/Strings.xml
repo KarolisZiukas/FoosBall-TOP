@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="app_name">Foosball</string>
-  <string name="place_holder_red_team">Red team</string>
-  <string name="place_holder_blue_team">Blue team</string>
-  <string name="place_holder_logs">Logs</string>
-
-</resources>
