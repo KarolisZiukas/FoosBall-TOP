@@ -20,7 +20,7 @@ namespace RedBallTracker
 
         VideoCapture capWebcam;
         bool blnCapturingInProcess = false;
-
+        ScoreCounter scoreCounter = new ScoreCounter();
         public frmMain()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace RedBallTracker
             {
 
                 capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
-
+                
             }
             catch (Exception ex)
             {
@@ -46,7 +46,6 @@ namespace RedBallTracker
         void processFrameAndUpdateGUI(object sender, EventArgs arg)
         {
             Mat imgOriginal;
-
             imgOriginal = capWebcam.QueryFrame();
             if (imgOriginal == null)
             {
@@ -85,11 +84,15 @@ namespace RedBallTracker
                 {                         
                     txtXYRadius.AppendText(Environment.NewLine);         
                 }
-                    txtXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-                    txtXYRadius.ScrollToCaret();
+                //txtXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
+                txtXYRadius.ScrollToCaret();
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
-                }
+                scoreCounter.countScore(circle.Center.X);
+                txtXYRadius.AppendText("ball position x = " + scoreCounter.scoreTeamRed + ", y = " + scoreCounter.scoreTeamBlue);
+
+
+            }
             ibOriginal.Image = imgOriginal;
             ibThresh.Image = imgThresh;
         }
@@ -97,11 +100,10 @@ namespace RedBallTracker
 
         private void btnPauseOrResume_Click(object sender, EventArgs e)
         {
-
             if (blnCapturingInProcess == true)
             {                    // if we are currently processing an image, user just choose pause, so . . .
-                Application.Idle -= processFrameAndUpdateGUI;       // remove the process image function from the application's list of tasks
-                blnCapturingInProcess = false;                      // update flag variable
+                Application.Idle += processFrameAndUpdateGUI;        // remove the process image function from the application's list of tasks
+                blnCapturingInProcess = false;   // update flag variable
                 btnPauseOrResume.Text = " Resume ";                 // update button text
             }
             else
