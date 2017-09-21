@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBallTracker", "RedBallTracker.csproj", "{1B8E5F47-37D5-4D8D-8420-5B0FC38B113F}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {35EF9B91-17CD-46E3-AFC8-CF3970892899}
+		SolutionGuid = {8F7958B5-F2FD-4166-A818-59B3A627A210}
 	EndGlobalSection
 EndGlobal

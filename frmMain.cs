@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Emgu.CV;                  
 using Emgu.CV.CvEnum;           
 using Emgu.CV.Structure;        
-using Emgu.CV.UI;               
+using Emgu.CV.UI;
+using System.Threading;
 
 namespace RedBallTracker
 {
@@ -19,16 +19,16 @@ namespace RedBallTracker
     {
 
         VideoCapture capWebcam;
+        
         bool blnCapturingInProcess = false;
         ScoreCounter scoreCounter = new ScoreCounter();
         public frmMain()
         {
             InitializeComponent();
-             try
+            try
             {
 
-                capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
-                
+                capWebcam = new VideoCapture("C:\\Users\\Mantas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4");
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace RedBallTracker
                 Environment.Exit(0);
                 return;
             }
-            Application.Idle += processFrameAndUpdateGUI;       // add process image function to the application's list of tasks
+            Application.Idle += processFrameAndUpdateGUI;    // add process image function to the application's list of tasks   
             blnCapturingInProcess = true;
         }
 
@@ -47,6 +47,7 @@ namespace RedBallTracker
         {
             Mat imgOriginal;
             imgOriginal = capWebcam.QueryFrame();
+            Thread.Sleep(1000 /60);
             if (imgOriginal == null)
             {
                 MessageBox.Show("unable to read from webcam" + Environment.NewLine + Environment.NewLine +
@@ -80,17 +81,13 @@ namespace RedBallTracker
 
             foreach (CircleF circle in circles)
             {
-                if (txtXYRadius.Text != "")
-                {                         
-                    txtXYRadius.AppendText(Environment.NewLine);         
-                }
                 //txtXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-                txtXYRadius.ScrollToCaret();
+              
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
-                scoreCounter.countScore(circle.Center.X);
-                txtXYRadius.AppendText("ball position x = " + scoreCounter.scoreTeamRed + ", y = " + scoreCounter.scoreTeamBlue);
-
+                    scoreCounter.countScore(circle.Center.X);
+                    lTeamBox.Text = ("Red team score: " + scoreCounter.scoreTeamRed);
+                    rTeamBox.Text = ("Blue team score: " + scoreCounter.scoreTeamBlue);
 
             }
             ibOriginal.Image = imgOriginal;
@@ -112,6 +109,16 @@ namespace RedBallTracker
                 blnCapturingInProcess = true;                       // update flag variable
                 btnPauseOrResume.Text = " Pause ";                  // new button will offer pause option
             }
+        }
+
+        private void tlpOuter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
