@@ -29,7 +29,8 @@ namespace RedBallTracker
             try
             {
 
-                capWebcam = new VideoCapture("C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4");
+                capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
+
             }
             catch (Exception ex)
             {
@@ -48,7 +49,7 @@ namespace RedBallTracker
         {
             Mat imgOriginal;
             imgOriginal = capWebcam.QueryFrame();
-            Thread.Sleep(1000 /60);
+            Thread.Sleep(1000 / 180);
             if (imgOriginal == null)
             {
 
@@ -103,21 +104,6 @@ namespace RedBallTracker
         }
 
 
-        private void btnPauseOrResume_Click(object sender, EventArgs e)
-        {
-            if (blnCapturingInProcess == true)
-            {                    // if we are currently processing an image, user just choose pause, so . . .
-                Application.Idle += processFrameAndUpdateGUI;        // remove the process image function from the application's list of tasks
-                blnCapturingInProcess = false;   // update flag variable
-                btnPauseOrResume.Text = " Resume ";                 // update button text
-            }
-            else
-            {                                                // else if we are not currently processing an image, user just choose resume, so . . .
-                Application.Idle += processFrameAndUpdateGUI;       // add the process image function to the application's list of tasks
-                blnCapturingInProcess = true;                       // update flag variable
-                btnPauseOrResume.Text = " Pause ";                  // new button will offer pause option
-            }
-        }
 
         private void tlpOuter_Paint(object sender, PaintEventArgs e)
         {
