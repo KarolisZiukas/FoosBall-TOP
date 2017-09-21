@@ -31,11 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.tlpOuter = new System.Windows.Forms.TableLayoutPanel();
             this.tlpInner = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPauseOrResume = new System.Windows.Forms.Button();
+            this.rTeamBox = new System.Windows.Forms.TextBox();
+            this.lTeamBox = new System.Windows.Forms.TextBox();
             this.ibOriginal = new Emgu.CV.UI.ImageBox();
             this.ibThresh = new Emgu.CV.UI.ImageBox();
-            this.lTeamBox = new System.Windows.Forms.TextBox();
-            this.rTeamBox = new System.Windows.Forms.TextBox();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -64,7 +63,6 @@
             this.tlpInner.ColumnCount = 2;
             this.tlpInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpInner.Controls.Add(this.btnPauseOrResume, 0, 0);
             this.tlpInner.Controls.Add(this.rTeamBox, 0, 1);
             this.tlpInner.Controls.Add(this.lTeamBox, 1, 1);
             this.tlpInner.Location = new System.Drawing.Point(3, 367);
@@ -75,14 +73,24 @@
             this.tlpInner.Size = new System.Drawing.Size(573, 100);
             this.tlpInner.TabIndex = 0;
             // 
-            // btnPauseOrResume
+            // rTeamBox
             // 
-            this.btnPauseOrResume.Location = new System.Drawing.Point(3, 3);
-            this.btnPauseOrResume.Name = "btnPauseOrResume";
-            this.btnPauseOrResume.Size = new System.Drawing.Size(75, 23);
-            this.btnPauseOrResume.TabIndex = 0;
-            this.btnPauseOrResume.Text = "button1";
-            this.btnPauseOrResume.UseVisualStyleBackColor = true;
+            this.rTeamBox.Location = new System.Drawing.Point(3, 53);
+            this.rTeamBox.Name = "rTeamBox";
+            this.rTeamBox.ShortcutsEnabled = false;
+            this.rTeamBox.Size = new System.Drawing.Size(114, 20);
+            this.rTeamBox.TabIndex = 2;
+            this.rTeamBox.Text = "Blue team score: 0";
+            // 
+            // lTeamBox
+            // 
+            this.lTeamBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lTeamBox.Location = new System.Drawing.Point(289, 53);
+            this.lTeamBox.Name = "lTeamBox";
+            this.lTeamBox.Size = new System.Drawing.Size(115, 20);
+            this.lTeamBox.TabIndex = 1;
+            this.lTeamBox.Text = "Red team score: 0";
+            this.lTeamBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // ibOriginal
             // 
@@ -103,25 +111,6 @@
             this.ibThresh.Size = new System.Drawing.Size(573, 358);
             this.ibThresh.TabIndex = 2;
             this.ibThresh.TabStop = false;
-            // 
-            // lTeamBox
-            // 
-            this.lTeamBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lTeamBox.Location = new System.Drawing.Point(289, 53);
-            this.lTeamBox.Name = "lTeamBox";
-            this.lTeamBox.Size = new System.Drawing.Size(115, 20);
-            this.lTeamBox.TabIndex = 1;
-            this.lTeamBox.Text = "Red team score: 0";
-            this.lTeamBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // rTeamBox
-            // 
-            this.rTeamBox.Location = new System.Drawing.Point(3, 53);
-            this.rTeamBox.Name = "rTeamBox";
-            this.rTeamBox.ShortcutsEnabled = false;
-            this.rTeamBox.Size = new System.Drawing.Size(114, 20);
-            this.rTeamBox.TabIndex = 2;
-            this.rTeamBox.Text = "Blue team score: 0";
             // 
             // frmMain
             // 
@@ -144,7 +133,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tlpOuter;
         private System.Windows.Forms.TableLayoutPanel tlpInner;
-        private System.Windows.Forms.Button btnPauseOrResume;
         private Emgu.CV.UI.ImageBox ibOriginal;
         private Emgu.CV.UI.ImageBox ibThresh;
         private System.Windows.Forms.TextBox rTeamBox;
