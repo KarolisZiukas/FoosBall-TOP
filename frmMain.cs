@@ -12,6 +12,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;        
 using Emgu.CV.UI;
 using System.Threading;
+using System.IO;
 
 namespace RedBallTracker
 {
@@ -28,7 +29,7 @@ namespace RedBallTracker
             try
             {
 
-                capWebcam = new VideoCapture("C:\\Users\\Mantas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4");
+                capWebcam = new VideoCapture("C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4");
             }
             catch (Exception ex)
             {
@@ -50,6 +51,13 @@ namespace RedBallTracker
             Thread.Sleep(1000 /60);
             if (imgOriginal == null)
             {
+
+                using (StreamWriter sw = File.CreateText("C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\Scores.txt"))
+                {
+                    sw.WriteLine(scoreCounter.scoreTeamBlue);
+                    sw.WriteLine(scoreCounter.scoreTeamRed);
+                }
+
                 MessageBox.Show("unable to read from webcam" + Environment.NewLine + Environment.NewLine +
                                 "exiting program");
                 Environment.Exit(0);
