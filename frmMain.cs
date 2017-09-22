@@ -20,8 +20,9 @@ namespace RedBallTracker
     {
 
         VideoCapture capWebcam;
-        
+        private static string VIDEO_DIR = "C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4";
         bool blnCapturingInProcess = false;
+
         ScoreCounter scoreCounter = new ScoreCounter();
         public frmMain()
         {
@@ -29,7 +30,7 @@ namespace RedBallTracker
             try
             {
 
-                capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
+                capWebcam = new VideoCapture(VIDEO_DIR);
 
             }
             catch (Exception ex)
@@ -52,15 +53,7 @@ namespace RedBallTracker
             Thread.Sleep(1000 / 180);
             if (imgOriginal == null)
             {
-
-                using (StreamWriter sw = File.CreateText("C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\Scores.txt"))
-                {
-                    sw.WriteLine(scoreCounter.scoreTeamBlue);
-                    sw.WriteLine(scoreCounter.scoreTeamRed);
-                }
-
-                MessageBox.Show("unable to read from webcam" + Environment.NewLine + Environment.NewLine +
-                                "exiting program");
+                new FileIO().writeToFile(scoreCounter.scoreTeamRed, scoreCounter.scoreTeamBlue);
                 Environment.Exit(0);
                 return;
             }
@@ -113,6 +106,11 @@ namespace RedBallTracker
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void loadScore_Click(object sender, EventArgs e)
+        {
+            loadedScore.Text= (new FileIO().readFromFile());
         }
     }
 }
