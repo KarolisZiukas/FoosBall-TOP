@@ -29,14 +29,13 @@ namespace RedBallTracker
             try
             {
 
-                capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
+                capWebcam = new VideoCapture("C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4");
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("unable to read from webcam, error: " + Environment.NewLine + Environment.NewLine +
-                                ex.Message + Environment.NewLine + Environment.NewLine +
-                                "exiting program");
+                MessageBox.Show("Video has ended" + Environment.NewLine + Environment.NewLine +
+                                ex.Message + Environment.NewLine + Environment.NewLine);
                 Environment.Exit(0);
                 return;
             }
