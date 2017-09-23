@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;                  
 using Emgu.CV.CvEnum;           
-using Emgu.CV.Structure;        
+using Emgu.CV.Structure;
+using Emgu.CV.Tracking;
 using Emgu.CV.UI;
 using System.Threading;
+using System.IO;
 
 namespace RedBallTracker
 {
@@ -19,8 +21,9 @@ namespace RedBallTracker
     {
 
         VideoCapture capWebcam;
-        
+        private static string VIDEO_DIR = "C:\\FoosballGeneral\\TestVideo\\testvideo3.mp4";
         bool blnCapturingInProcess = false;
+
         ScoreCounter scoreCounter = new ScoreCounter();
         public frmMain()
         {
@@ -28,7 +31,8 @@ namespace RedBallTracker
             try
             {
 
-                capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
+                capWebcam = new VideoCapture(VIDEO_DIR);
+
             }
             catch (Exception ex)
             {
@@ -50,8 +54,7 @@ namespace RedBallTracker
             Thread.Sleep(1000 / 180);
             if (imgOriginal == null)
             {
-                MessageBox.Show("unable to read from webcam" + Environment.NewLine + Environment.NewLine +
-                                "exiting program");
+                new FileIO().writeToFile(scoreCounter.scoreTeamRed, scoreCounter.scoreTeamBlue);
                 Environment.Exit(0);
                 return;
             }
@@ -104,6 +107,11 @@ namespace RedBallTracker
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void loadScore_Click(object sender, EventArgs e)
+        {
+            loadedScore.Text= (new FileIO().readFromFile());
         }
     }
 }

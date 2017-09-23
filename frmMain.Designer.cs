@@ -31,10 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tlpOuter = new System.Windows.Forms.TableLayoutPanel();
             this.tlpInner = new System.Windows.Forms.TableLayoutPanel();
+            this.loadedScore = new System.Windows.Forms.TextBox();
             this.rTeamBox = new System.Windows.Forms.TextBox();
             this.lTeamBox = new System.Windows.Forms.TextBox();
             this.ibOriginal = new Emgu.CV.UI.ImageBox();
             this.ibThresh = new Emgu.CV.UI.ImageBox();
+            this.loadScore = new System.Windows.Forms.Button();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -63,8 +65,10 @@
             this.tlpInner.ColumnCount = 2;
             this.tlpInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpInner.Controls.Add(this.loadedScore, 1, 0);
             this.tlpInner.Controls.Add(this.rTeamBox, 0, 1);
             this.tlpInner.Controls.Add(this.lTeamBox, 1, 1);
+            this.tlpInner.Controls.Add(this.loadScore, 0, 0);
             this.tlpInner.Location = new System.Drawing.Point(3, 367);
             this.tlpInner.Name = "tlpInner";
             this.tlpInner.RowCount = 2;
@@ -72,6 +76,13 @@
             this.tlpInner.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInner.Size = new System.Drawing.Size(573, 100);
             this.tlpInner.TabIndex = 0;
+            // 
+            // loadedScore
+            // 
+            this.loadedScore.Location = new System.Drawing.Point(289, 3);
+            this.loadedScore.Name = "loadedScore";
+            this.loadedScore.Size = new System.Drawing.Size(115, 20);
+            this.loadedScore.TabIndex = 1;
             // 
             // rTeamBox
             // 
@@ -112,6 +123,16 @@
             this.ibThresh.TabIndex = 2;
             this.ibThresh.TabStop = false;
             // 
+            // loadScore
+            // 
+            this.loadScore.Location = new System.Drawing.Point(3, 3);
+            this.loadScore.Name = "loadScore";
+            this.loadScore.Size = new System.Drawing.Size(75, 23);
+            this.loadScore.TabIndex = 3;
+            this.loadScore.Text = "load score";
+            this.loadScore.UseVisualStyleBackColor = true;
+            this.loadScore.Click += new System.EventHandler(this.loadScore_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,6 +158,8 @@
         private Emgu.CV.UI.ImageBox ibThresh;
         private System.Windows.Forms.TextBox rTeamBox;
         private System.Windows.Forms.TextBox lTeamBox;
+        private System.Windows.Forms.TextBox loadedScore;
+        private System.Windows.Forms.Button loadScore;
     }
 }
 
