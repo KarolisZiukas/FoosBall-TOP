@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;                  
 using Emgu.CV.CvEnum;           
-using Emgu.CV.Structure;        
+using Emgu.CV.Structure;
+using Emgu.CV.Tracking;
 using Emgu.CV.UI;
 using System.Threading;
 using System.IO;
@@ -20,7 +21,7 @@ namespace RedBallTracker
     {
 
         VideoCapture capWebcam;
-        private static string VIDEO_DIR = "C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4";
+        private static string VIDEO_DIR = "C:\\FoosballGeneral\\TestVideo\\testvideo3.mp4";
         bool blnCapturingInProcess = false;
 
         ScoreCounter scoreCounter = new ScoreCounter();
