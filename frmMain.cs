@@ -15,8 +15,28 @@ using System.Threading;
 
 namespace RedBallTracker
 {
+
+    public struct Vardai
+    {
+        public string Player1;
+        public string Player2;
+
+        public Vardai(string Player1, string Player2)
+        {
+            this.Player1 = Player1;
+            this.Player2 = Player2;
+        }
+    }
+
     public partial class frmMain : Form
     {
+        private Vardai vardas;
+        // Property usage in structs
+        public Vardai Vardai // Getters and setters for the structure
+        {
+            get { return vardas; }
+            set { vardas = value; }
+        }
 
         VideoCapture capWebcam;
         
@@ -25,10 +45,14 @@ namespace RedBallTracker
         public frmMain()
         {
             InitializeComponent();
+            string Player1 = "";
+            string Player2 = "";
+            InputBox("Enter the name of the first player", "First player name is", ref Player1);
+            InputBox("Enter the name of the first player", "First player name is", ref Player2);
+            vardas = new Vardai(Player1, Player2);
             try
             {
-
-                capWebcam = new VideoCapture("C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4");
+                capWebcam = new VideoCapture("C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4");
             }
             catch (Exception ex)
             {
@@ -41,7 +65,48 @@ namespace RedBallTracker
             Application.Idle += processFrameAndUpdateGUI;    // add process image function to the application's list of tasks   
             blnCapturingInProcess = true;
         }
+        // Method for calling a message box to input names of the players
+        public static DialogResult InputBox(string title, string promptText, ref string value)
+        {
+            Form form = new Form();
+            Label label = new Label();
+            TextBox textBox = new TextBox();
+            Button buttonOk = new Button();
+            Button buttonCancel = new Button();
 
+            form.Text = title;
+            label.Text = promptText;
+            textBox.Text = value;
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonOk.DialogResult = DialogResult.OK;
+            buttonCancel.DialogResult = DialogResult.Cancel;
+
+            label.SetBounds(9, 20, 372, 13);
+            textBox.SetBounds(12, 36, 372, 20);
+            buttonOk.SetBounds(228, 72, 75, 23);
+            buttonCancel.SetBounds(309, 72, 75, 23);
+
+            label.AutoSize = true;
+            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            form.ClientSize = new Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+
+            DialogResult dialogResult = form.ShowDialog();
+            value = textBox.Text;
+            return dialogResult;
+        }
 
         void processFrameAndUpdateGUI(object sender, EventArgs arg)
         {
@@ -86,8 +151,8 @@ namespace RedBallTracker
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
                     scoreCounter.countScore(circle.Center.X);
-                    lTeamBox.Text = ("Red team score: " + scoreCounter.scoreTeamRed);
-                    rTeamBox.Text = ("Blue team score: " + scoreCounter.scoreTeamBlue);
+                    lTeamBox.Text = ("Player " + vardas.Player1 + scoreCounter.scoreTeamRed);
+                    rTeamBox.Text = ("Player " + vardas.Player2 + scoreCounter.scoreTeamBlue);
 
             }
             ibOriginal.Image = imgOriginal;
