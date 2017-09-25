@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RedBallTracker
+﻿namespace RedBallTracker
 {
     class ScoreCounter
     {
-        public int scoreTeamBlue = 0;
-        public int scoreTeamRed = 0;
+        private int scoreTeamBlue = 0;
+        private int scoreTeamRed = 0;
 
         public int ScoreTeamBlue { get => scoreTeamBlue; set => scoreTeamBlue = value; }
         public int ScoreTeamRed { get => scoreTeamRed; set => scoreTeamRed = value; }
+
 
         public ScoreCounter()
         {
@@ -23,11 +18,11 @@ namespace RedBallTracker
         {
             if (coordinate < 15)
             {
-                scoreTeamRed++;
+                ScoreTeamRed++;
             }
             else if (coordinate > 599)
             {
-                scoreTeamBlue++;
+                ScoreTeamBlue++;
             }
         }
     }
