@@ -40,7 +40,7 @@ namespace RedBallTracker
         }
 
         VideoCapture capWebcam;
-        private static string VIDEO_DIR = "C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\testvideo3.mp4";
+        private static string VIDEO_DIR = "C:\\FoosballGeneral\\TestVideo\\testvideo3.mp4";
         bool blnCapturingInProcess = false;
 
         ScoreCounter scoreCounter = new ScoreCounter();
@@ -154,8 +154,8 @@ namespace RedBallTracker
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
                     scoreCounter.countScore(circle.Center.X);
-                    lTeamBox.Text = ("Player " + vardas.Player1 + scoreCounter.scoreTeamRed);
-                    rTeamBox.Text = ("Player " + vardas.Player2 + scoreCounter.scoreTeamBlue);
+                    lTeamBox.Text = ("Player " + vardas.Player1 + ": " + scoreCounter.scoreTeamRed);
+                    rTeamBox.Text = ("Player " + vardas.Player2 + ": " + scoreCounter.scoreTeamBlue);
 
             }
             ibOriginal.Image = imgOriginal;
