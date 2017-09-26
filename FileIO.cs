@@ -9,7 +9,7 @@ namespace RedBallTracker
     class FileIO
     {
 
-        private static string FILE_DIR = "C:\\Users\\Karolis\\Source\\Repos\\RedBallTracker\\Scores.txt";
+        private static string FILE_DIR = "C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\Scores.txt";
         public FileIO()
         {
 
