@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 namespace RedBallTracker
 {
     class FileIO
     {
 
         private static string FILE_DIR = "C:\\FoosballGeneral\\Res\\Scores.txt";
+
         public FileIO()
         {
 
@@ -18,10 +14,12 @@ namespace RedBallTracker
     public void writeToFile(int redTeam, int blueTeam)
         {
 
-            using (StreamWriter sw = File.CreateText(FILE_DIR))
+            using (StreamWriter sw = File.AppendText(FILE_DIR))
             {
-                sw.WriteLine(redTeam);
-                sw.WriteLine(blueTeam);
+                sw.Write(redTeam);
+                sw.Write(" ");
+                sw.Write(blueTeam);
+                sw.WriteLine();
             }
         }
 
