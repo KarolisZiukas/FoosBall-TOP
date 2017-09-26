@@ -4,6 +4,7 @@ namespace RedBallTracker
     class FileIO
     {
 
+
         private static string FILE_DIR = "C:\\FoosballGeneral\\Res\\Scores.txt";
 
         public FileIO()
