@@ -40,7 +40,7 @@ namespace RedBallTracker
         public Names name;
 
         VideoCapture capWebcam;
-        private static string VIDEO_DIR = "C:\\Users\\Adomas\\Source\\Repos\\FoosBall-TOP\\testvideo3.mp4";
+        private static string VIDEO_DIR = "C:\\FoosballGeneral\\TestVideo\\testvideo3.mp4";
         bool blnCapturingInProcess = false;
 
         ScoreCounter scoreCounter = new ScoreCounter();
