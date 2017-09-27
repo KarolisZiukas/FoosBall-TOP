@@ -58,7 +58,6 @@
             this.tlpOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.71428F));
             this.tlpOuter.Size = new System.Drawing.Size(1158, 490);
             this.tlpOuter.TabIndex = 0;
-            this.tlpOuter.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpOuter_Paint);
             // 
             // tlpInner
             // 
@@ -101,7 +100,6 @@
             this.lTeamBox.Size = new System.Drawing.Size(115, 20);
             this.lTeamBox.TabIndex = 1;
             this.lTeamBox.Text = "Red team score: 0";
-            this.lTeamBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // ibOriginal
             // 
