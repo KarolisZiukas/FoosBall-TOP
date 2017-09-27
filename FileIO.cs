@@ -5,14 +5,14 @@ namespace RedBallTracker
     {
 
 
-        private static string FILE_DIR = "C:\\FoosballGeneral\\Res\\Scores.txt";
+        private static string FILE_DIR = "..\\projectFiles\\Scores.txt";
 
         public FileIO()
         {
 
         }
-
-    public void writeToFile(int redTeam, int blueTeam)
+    //Generic type
+    public void writeToFile<T1, T2>(T1 redTeam, T2 blueTeam)
         {
 
             using (StreamWriter sw = File.AppendText(FILE_DIR))

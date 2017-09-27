@@ -1,10 +1,10 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
+using System;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace RedBallTracker
 {
@@ -30,9 +30,9 @@ namespace RedBallTracker
     public partial class frmMain : Form
     {
         public Names name;
-
+        
         VideoCapture capWebcam;
-        private static string VIDEO_DIR = "C:\\FoosballGeneral\\TestVideo\\testvideo3.mp4";
+        private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
 
 
         ScoreCounter scoreCounter = new ScoreCounter();
@@ -42,13 +42,12 @@ namespace RedBallTracker
 
             string Player1 = "";
             string Player2 = "";
-
+            //Optional variables
             new OpeningDialogs().inputBox("Enter the name of the first player", "First player name is", ref Player1, "Submit");
             new OpeningDialogs().inputBox("Enter the name of the second player", "Second player name is", ref Player2);
             name.player1GetSet = Player1;
             name.player2GetSet = Player2;
             Player2 = name.player1GetSet;
-            vardas = new Vardai(Player1, Player2);
 
             try
             {
@@ -77,6 +76,7 @@ namespace RedBallTracker
             {
                 //Named variables
                 new FileIO().writeToFile(blueTeam: scoreCounter.ScoreTeamBlue, redTeam: scoreCounter.ScoreTeamRed);
+                MessageBox.Show("team won");
                 Environment.Exit(0);
                 return;
             }
@@ -111,26 +111,14 @@ namespace RedBallTracker
                     CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
                     scoreCounter.countScore(circle.Center.X);
 
-                    lTeamBox.Text = ("Player " + this.name.player1GetSet + " " + scoreCounter.scoreTeamRed);
-                    rTeamBox.Text = ("Player " + this.name.player2GetSet + " " + scoreCounter.scoreTeamBlue);
+                    lTeamBox.Text = ("Player " + this.name.player1GetSet + " " + scoreCounter.ScoreTeamRed);
+                    rTeamBox.Text = ("Player " + this.name.player2GetSet + " " + scoreCounter.ScoreTeamBlue);
 
 
 
             }
             ibOriginal.Image = imgOriginal;
             ibThresh.Image = imgThresh;
-        }
-
-
-
-        private void tlpOuter_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void loadScore_Click(object sender, EventArgs e)
