@@ -8,10 +8,18 @@ using System.Windows.Forms;
 
 namespace RedBallTracker
 {
+
+    public enum EndRezult
+    {
+        Blue = -1,
+        Red = 1,
+        Tie = 0
+    }
+
     public struct Names
     {
-        public string Player1;
-        public string Player2;
+        private string Player1;
+        private string Player2;
 
         // Property usage in structs
         public String player1GetSet // Getters and setters for the structure
@@ -30,12 +38,12 @@ namespace RedBallTracker
     public partial class frmMain : Form
     {
         public Names name;
-        
-        VideoCapture capWebcam;
+        ScoreCounter scoreCounter = new ScoreCounter();
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
 
+        VideoCapture capWebcam;
 
-        ScoreCounter scoreCounter = new ScoreCounter();
+
         public frmMain()
         {
             InitializeComponent();
@@ -70,13 +78,14 @@ namespace RedBallTracker
             Mat imgOriginal;
             imgOriginal = capWebcam.QueryFrame();
 
-            Thread.Sleep(1000 / 60);
+            Thread.Sleep(1000 / 120);
 
             if (imgOriginal == null)
             {
                 //Named variables
                 new FileIO().writeToFile(blueTeam: scoreCounter.ScoreTeamBlue, redTeam: scoreCounter.ScoreTeamRed);
-                MessageBox.Show("team won");
+                EndRezult endRezult = (EndRezult) scoreCounter.Compare(scoreCounter.ScoreTeamBlue, scoreCounter.ScoreTeamRed);
+                MessageBox.Show("team won " + endRezult);
                 Environment.Exit(0);
                 return;
             }
