@@ -1,6 +1,10 @@
-﻿namespace RedBallTracker
+﻿using System.Collections.Generic;
+
+namespace RedBallTracker
 {
-    class ScoreCounter
+    //IComparer
+
+    class ScoreCounter : IComparer<int>
     {
         private int scoreTeamBlue = 0;
         private int scoreTeamRed = 0;
@@ -24,6 +28,16 @@
             {
                 ScoreTeamBlue++;
             }
+        }
+        public int Compare(int x, int y)
+        {
+            if (x > y)
+                return -1;
+            if (x == y)
+                return 0;
+            if (x < y)
+                return 1;
+            return 0;
         }
     }
 }
