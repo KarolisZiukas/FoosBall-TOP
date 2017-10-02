@@ -53,8 +53,8 @@ namespace RedBallTracker
             string Player2 = string.Empty;
 
             //TODO Karolis Optional variables
-            new OpeningDialogs().inputBox(Strings.EnterFirstPlayerName, Strings.FirstPlayerNameIs, ref Player1, Strings.SubmitOption);
-            new OpeningDialogs().inputBox(Strings.EnterSecondPlayerName, Strings.SecondPlayerNameIs, ref Player2);
+            new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
+            new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
             name.player1GetSet = Player1;
             name.player2GetSet = Player2;
             Player2 = name.player1GetSet;
@@ -66,7 +66,7 @@ namespace RedBallTracker
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Strings.ErrorFromFile);
+                MessageBox.Show(Constants.ErrorFromFile);
                 Environment.Exit(0);
                 return;
             }
@@ -87,9 +87,8 @@ namespace RedBallTracker
             {
                 //TODO Karolis Named variables
                 new FileIO().writeToFile(blueTeam: scoreCounter.ScoreTeamBlue, redTeam: scoreCounter.ScoreTeamRed);
-                EndResult endRezult = (EndResult)scoreCounter.Compare(scoreCounter.ScoreTeamBlue, scoreCounter.ScoreTeamRed);
-                MessageBox.Show(Strings.ResultMessage + endRezult);
-                MessageBox.Show(Strings.ResultMessage);
+                EndResult endResult = (EndResult)scoreCounter.Compare(scoreCounter.ScoreTeamBlue, scoreCounter.ScoreTeamRed);
+                MessageBox.Show(Constants.ResultMessage + endResult);
 
                 Environment.Exit(0);
                 return;
@@ -125,8 +124,8 @@ namespace RedBallTracker
                 CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
                 scoreCounter.countScore(circle.Center.X);
 
-                lTeamBox.Text = (Strings.PlayerPlaceHolder + this.name.player1GetSet + " " + scoreCounter.ScoreTeamRed);
-                rTeamBox.Text = (Strings.PlayerPlaceHolder + this.name.player2GetSet + " " + scoreCounter.ScoreTeamBlue);
+                lTeamBox.Text = (Constants.PlayerPlaceHolder + this.name.player1GetSet + " " + scoreCounter.ScoreTeamRed);
+                rTeamBox.Text = (Constants.PlayerPlaceHolder + this.name.player2GetSet + " " + scoreCounter.ScoreTeamBlue);
 
 
 

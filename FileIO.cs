@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-
 namespace RedBallTracker
 {
     class FileIO
@@ -19,7 +18,6 @@ namespace RedBallTracker
         {
             try
             {
-
                 using (StreamWriter sw = File.AppendText(FILE_DIR))
                 {
                     sw.Write(redTeam + " ");
@@ -29,7 +27,7 @@ namespace RedBallTracker
             }
             catch(Exception ex)
             {
-                MessageBox.Show(Strings.ErrorToFile);
+                MessageBox.Show(Constants.ErrorToFile);
                 Environment.Exit(0);
             }
         }
@@ -41,12 +39,9 @@ namespace RedBallTracker
             }
             catch(Exception ex)
             {
-                MessageBox.Show(Strings.ErrorFromFile);
+                MessageBox.Show(Constants.ErrorFromFile);
                 return string.Empty;
             }
             }
-
-
-
     }
 }

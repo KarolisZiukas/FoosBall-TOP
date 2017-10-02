@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace RedBallTracker
 {
-    class OpeningDialogs : ScoreCounter
+    class OpeningDialogs
     {
         public OpeningDialogs()
         {
@@ -12,8 +12,8 @@ namespace RedBallTracker
         }
         
         //TODO Karolis Optional variables
-        public DialogResult inputBox(string title, string promptText, ref string value, string defaultLeftButtonText = Strings.OkOption, 
-            string defaultRightButtonText = Strings.CancelOption)
+        public DialogResult inputBox(string title, string promptText, ref string value, string defaultLeftButtonText = Constants.OkOption, 
+            string defaultRightButtonText = Constants.CancelOption)
         {
             Form form = new Form();
             Label label = new Label();

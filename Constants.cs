@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedBallTracker
 {
-    public static class Strings
+    public static class Constants
     {
         //Dialog creation strings Strings
         public const string CancelOption = "Cancel";
