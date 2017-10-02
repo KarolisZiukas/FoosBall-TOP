@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlueTeamFigures.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -68,6 +69,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScoreCounter.cs" />
+    <Compile Include="Constants.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

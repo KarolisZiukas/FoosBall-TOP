@@ -10,9 +10,10 @@ namespace RedBallTracker
         {
 
         }
-        //Optional variables
-        public DialogResult inputBox(string title, string promptText, ref string value, string defaultLeftButtonText = "Ok", 
-            string defaultRightButtonText = "Cancel")
+        
+        //TODO Karolis Optional variables
+        public DialogResult inputBox(string title, string promptText, ref string value, string defaultLeftButtonText = Constants.OkOption, 
+            string defaultRightButtonText = Constants.CancelOption)
         {
             Form form = new Form();
             Label label = new Label();

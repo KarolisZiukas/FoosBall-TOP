@@ -34,9 +34,10 @@
             this.loadedScore = new System.Windows.Forms.TextBox();
             this.rTeamBox = new System.Windows.Forms.TextBox();
             this.lTeamBox = new System.Windows.Forms.TextBox();
+            this.loadScore = new System.Windows.Forms.Button();
             this.ibOriginal = new Emgu.CV.UI.ImageBox();
             this.ibThresh = new Emgu.CV.UI.ImageBox();
-            this.loadScore = new System.Windows.Forms.Button();
+            this.bluePlayers = new System.Windows.Forms.Button();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -51,6 +52,7 @@
             this.tlpOuter.Controls.Add(this.tlpInner, 0, 1);
             this.tlpOuter.Controls.Add(this.ibOriginal, 0, 0);
             this.tlpOuter.Controls.Add(this.ibThresh, 1, 0);
+            this.tlpOuter.Controls.Add(this.bluePlayers, 1, 1);
             this.tlpOuter.Location = new System.Drawing.Point(12, 12);
             this.tlpOuter.Name = "tlpOuter";
             this.tlpOuter.RowCount = 2;
@@ -101,6 +103,16 @@
             this.lTeamBox.TabIndex = 1;
             this.lTeamBox.Text = "Red team score: 0";
             // 
+            // loadScore
+            // 
+            this.loadScore.Location = new System.Drawing.Point(3, 3);
+            this.loadScore.Name = "loadScore";
+            this.loadScore.Size = new System.Drawing.Size(75, 23);
+            this.loadScore.TabIndex = 3;
+            this.loadScore.Text = "load score";
+            this.loadScore.UseVisualStyleBackColor = true;
+            this.loadScore.Click += new System.EventHandler(this.loadScore_Click);
+            // 
             // ibOriginal
             // 
             this.ibOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -121,15 +133,15 @@
             this.ibThresh.TabIndex = 2;
             this.ibThresh.TabStop = false;
             // 
-            // loadScore
+            // bluePlayers
             // 
-            this.loadScore.Location = new System.Drawing.Point(3, 3);
-            this.loadScore.Name = "loadScore";
-            this.loadScore.Size = new System.Drawing.Size(75, 23);
-            this.loadScore.TabIndex = 3;
-            this.loadScore.Text = "load score";
-            this.loadScore.UseVisualStyleBackColor = true;
-            this.loadScore.Click += new System.EventHandler(this.loadScore_Click);
+            this.bluePlayers.Location = new System.Drawing.Point(582, 367);
+            this.bluePlayers.Name = "bluePlayers";
+            this.bluePlayers.Size = new System.Drawing.Size(75, 23);
+            this.bluePlayers.TabIndex = 3;
+            this.bluePlayers.Text = "Blue team";
+            this.bluePlayers.UseVisualStyleBackColor = true;
+            this.bluePlayers.Click += new System.EventHandler(this.bluePlayers_Click);
             // 
             // frmMain
             // 
@@ -152,12 +164,13 @@
 
         private System.Windows.Forms.TableLayoutPanel tlpOuter;
         private System.Windows.Forms.TableLayoutPanel tlpInner;
-        private Emgu.CV.UI.ImageBox ibOriginal;
-        private Emgu.CV.UI.ImageBox ibThresh;
         private System.Windows.Forms.TextBox rTeamBox;
         private System.Windows.Forms.TextBox lTeamBox;
         private System.Windows.Forms.TextBox loadedScore;
         private System.Windows.Forms.Button loadScore;
+        public Emgu.CV.UI.ImageBox ibOriginal;
+        public Emgu.CV.UI.ImageBox ibThresh;
+        private System.Windows.Forms.Button bluePlayers;
     }
 }
 

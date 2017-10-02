@@ -2,15 +2,13 @@
 
 namespace RedBallTracker
 {
-    //IComparer
+    //TODO Karolis IComparer
 
-    class ScoreCounter : IComparer<int>
+    public class ScoreCounter : IComparer<int>
     {
-        private int scoreTeamBlue = 0;
-        private int scoreTeamRed = 0;
-
-        public int ScoreTeamBlue { get => scoreTeamBlue; set => scoreTeamBlue = value; }
-        public int ScoreTeamRed { get => scoreTeamRed; set => scoreTeamRed = value; }
+        //TODO Karolis auto-implemented properties
+        public int ScoreTeamBlue { get; set; }
+        public int ScoreTeamRed { get; set; }
 
 
         public ScoreCounter()
