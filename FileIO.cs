@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
+
 namespace RedBallTracker
 {
     class FileIO
@@ -11,23 +14,39 @@ namespace RedBallTracker
         {
 
         }
-    //Generic type
+    //TODO Karolis Generic type
     public void writeToFile<T1, T2>(T1 redTeam, T2 blueTeam)
         {
-
-            using (StreamWriter sw = File.AppendText(FILE_DIR))
+            try
             {
-                sw.Write(redTeam);
-                sw.Write(" ");
-                sw.Write(blueTeam);
-                sw.WriteLine();
+
+                using (StreamWriter sw = File.AppendText(FILE_DIR))
+                {
+                    sw.Write(redTeam + " ");
+                    sw.Write(blueTeam);
+                    sw.WriteLine();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(Strings.ErrorToFile);
+                Environment.Exit(0);
             }
         }
 
-    public string readFromFile()
+        public string readFromFile()
         {
-            return File.ReadAllText(FILE_DIR);
-        }
+            try {
+                return File.ReadAllText(FILE_DIR);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(Strings.ErrorFromFile);
+                return string.Empty;
+            }
+            }
+
+
 
     }
 }

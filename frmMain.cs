@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace RedBallTracker
 {
 
-    public enum EndRezult
+    public enum EndResult
     {
         Blue = -1,
         Red = 1,
@@ -21,7 +21,7 @@ namespace RedBallTracker
         private string Player1;
         private string Player2;
 
-        // Property usage in structs
+        // TODO Adomas Property usage in structs
         public String player1GetSet // Getters and setters for the structure
         {
             get { return Player1; }
@@ -39,20 +39,22 @@ namespace RedBallTracker
     {
         public Names name;
         ScoreCounter scoreCounter = new ScoreCounter();
+        VideoCapture capWebcam;
+        BlueTeamFigures blueTeamFigures = new BlueTeamFigures();
+
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
 
-        VideoCapture capWebcam;
 
 
         public frmMain()
         {
             InitializeComponent();
+            string Player1 = string.Empty;
+            string Player2 = string.Empty;
 
-            string Player1 = "";
-            string Player2 = "";
-            //Optional variables
-            new OpeningDialogs().inputBox("Enter the name of the first player", "First player name is", ref Player1, "Submit");
-            new OpeningDialogs().inputBox("Enter the name of the second player", "Second player name is", ref Player2);
+            //TODO Karolis Optional variables
+            new OpeningDialogs().inputBox(Strings.EnterFirstPlayerName, Strings.FirstPlayerNameIs, ref Player1, Strings.SubmitOption);
+            new OpeningDialogs().inputBox(Strings.EnterSecondPlayerName, Strings.SecondPlayerNameIs, ref Player2);
             name.player1GetSet = Player1;
             name.player2GetSet = Player2;
             Player2 = name.player1GetSet;
@@ -60,21 +62,22 @@ namespace RedBallTracker
             try
             {
                 capWebcam = new VideoCapture(VIDEO_DIR);
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("unable to read from webcam, error: " + Environment.NewLine + Environment.NewLine +
-                                ex.Message + Environment.NewLine + Environment.NewLine +
-                                "exiting program");
+                MessageBox.Show(Strings.ErrorFromFile);
                 Environment.Exit(0);
                 return;
             }
-            Application.Idle += processFrameAndUpdateGUI;    // add process image function to the application's list of tasks   
+            Application.Idle += processFrameAndUpdateGUI;
+
         }
-        
+
 
         void processFrameAndUpdateGUI(object sender, EventArgs arg)
         {
+
             Mat imgOriginal;
             imgOriginal = capWebcam.QueryFrame();
 
@@ -82,10 +85,12 @@ namespace RedBallTracker
 
             if (imgOriginal == null)
             {
-                //Named variables
+                //TODO Karolis Named variables
                 new FileIO().writeToFile(blueTeam: scoreCounter.ScoreTeamBlue, redTeam: scoreCounter.ScoreTeamRed);
-                EndRezult endRezult = (EndRezult) scoreCounter.Compare(scoreCounter.ScoreTeamBlue, scoreCounter.ScoreTeamRed);
-                MessageBox.Show("team won " + endRezult);
+                EndResult endRezult = (EndResult)scoreCounter.Compare(scoreCounter.ScoreTeamBlue, scoreCounter.ScoreTeamRed);
+                MessageBox.Show(Strings.ResultMessage + endRezult);
+                MessageBox.Show(Strings.ResultMessage);
+
                 Environment.Exit(0);
                 return;
             }
@@ -115,24 +120,37 @@ namespace RedBallTracker
             foreach (CircleF circle in circles)
             {
                 //txtXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-          
-                    CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
-                    CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
-                    scoreCounter.countScore(circle.Center.X);
 
-                    lTeamBox.Text = ("Player " + this.name.player1GetSet + " " + scoreCounter.ScoreTeamRed);
-                    rTeamBox.Text = ("Player " + this.name.player2GetSet + " " + scoreCounter.ScoreTeamBlue);
+                CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
+                CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
+                scoreCounter.countScore(circle.Center.X);
+
+                lTeamBox.Text = (Strings.PlayerPlaceHolder + this.name.player1GetSet + " " + scoreCounter.ScoreTeamRed);
+                rTeamBox.Text = (Strings.PlayerPlaceHolder + this.name.player2GetSet + " " + scoreCounter.ScoreTeamBlue);
 
 
 
             }
-            ibOriginal.Image = imgOriginal;
-            ibThresh.Image = imgThresh;
+
+           ibOriginal.Image = imgOriginal;
+          ibThresh.Image = imgThresh;
         }
 
         private void loadScore_Click(object sender, EventArgs e)
         {
             loadedScore.Text = (new FileIO().readFromFile() + " ");
+        }
+
+        private void bluePlayers_Click(object sender, EventArgs e)
+        {
+            //TODO Karolis usage of indexed properties
+            string blueTeamPlayers = string.Empty;
+            for (int i = 0; i < blueTeamFigures.arraySize(); i++)
+            {
+                blueTeamPlayers += blueTeamFigures[i] + "\n";
+            }
+            MessageBox.Show(blueTeamPlayers);
+
         }
     }
 }
