@@ -18,21 +18,10 @@ namespace RedBallTracker
 
     public struct Names
     {
-        private string Player1;
-        private string Player2;
+        // TODO Adomas auto Property usage in structs
+        public String Player1 { get; set; }
 
-        // TODO Adomas Property usage in structs
-        public String player1GetSet // Getters and setters for the structure
-        {
-            get { return Player1; }
-            set { Player1 = value; }
-        }
-
-        public String player2GetSet // Getters and setters for the structure
-        {
-            get { return Player2; }
-            set { Player2 = value; }
-        }
+        public String Player2 { get; set; }
     }
 
     public partial class frmMain : Form
@@ -44,8 +33,6 @@ namespace RedBallTracker
 
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
 
-
-
         public frmMain()
         {
             InitializeComponent();
@@ -55,9 +42,8 @@ namespace RedBallTracker
             //TODO Karolis Optional variables
             new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
             new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
-            name.player1GetSet = Player1;
-            name.player2GetSet = Player2;
-            Player2 = name.player1GetSet;
+            name.Player1 = Player1;
+            name.Player2 = Player2;
 
             try
             {
@@ -66,14 +52,13 @@ namespace RedBallTracker
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Constants.ErrorFromFile);
+                MessageBox.Show(Constants.ErrorFromFile + ex.Message);
                 Environment.Exit(0);
                 return;
             }
             Application.Idle += processFrameAndUpdateGUI;
 
         }
-
 
         void processFrameAndUpdateGUI(object sender, EventArgs arg)
         {
@@ -118,17 +103,12 @@ namespace RedBallTracker
             CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 5, 4, 8);
             foreach (CircleF circle in circles)
             {
-                //txtXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-
                 CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(255, 0, 0), 2, LineType.AntiAlias);
                 CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
                 scoreCounter.countScore(circle.Center.X);
 
-                lTeamBox.Text = (Constants.PlayerPlaceHolder + this.name.player1GetSet + " " + scoreCounter.ScoreTeamRed);
-                rTeamBox.Text = (Constants.PlayerPlaceHolder + this.name.player2GetSet + " " + scoreCounter.ScoreTeamBlue);
-
-
-
+                lTeamBox.Text = (Constants.PlayerPlaceHolder + this.name.Player1 + " " + scoreCounter.ScoreTeamRed);
+                rTeamBox.Text = (Constants.PlayerPlaceHolder + this.name.Player2 + " " + scoreCounter.ScoreTeamBlue);
             }
 
            ibOriginal.Image = imgOriginal;

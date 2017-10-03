@@ -15,16 +15,16 @@ namespace RedBallTracker
         {
 
         }
-
+        //TODO Adomas: Extension methods
         public void countScore(float coordinate)
         {
             if (coordinate < 15)
             {
-                ScoreTeamRed++;
+                ScoreTeamRed = ScoreTeamRed.IncreaseScore();
             }
             else if (coordinate > 599)
             {
-                ScoreTeamBlue++;
+                ScoreTeamBlue = ScoreTeamBlue.IncreaseScore();
             }
         }
         public int Compare(int x, int y)
