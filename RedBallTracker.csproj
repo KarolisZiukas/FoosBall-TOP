@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueTeamFigures.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>

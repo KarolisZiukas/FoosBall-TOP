@@ -80,34 +80,38 @@
             // 
             // loadedScore
             // 
+            this.loadedScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadedScore.Location = new System.Drawing.Point(289, 3);
             this.loadedScore.Name = "loadedScore";
-            this.loadedScore.Size = new System.Drawing.Size(115, 20);
+            this.loadedScore.Size = new System.Drawing.Size(267, 32);
             this.loadedScore.TabIndex = 1;
             // 
             // rTeamBox
             // 
+            this.rTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rTeamBox.Location = new System.Drawing.Point(3, 53);
             this.rTeamBox.Name = "rTeamBox";
             this.rTeamBox.ShortcutsEnabled = false;
-            this.rTeamBox.Size = new System.Drawing.Size(114, 20);
+            this.rTeamBox.Size = new System.Drawing.Size(280, 32);
             this.rTeamBox.TabIndex = 2;
             this.rTeamBox.Text = "Blue team score: 0";
             // 
             // lTeamBox
             // 
+            this.lTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTeamBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lTeamBox.Location = new System.Drawing.Point(289, 53);
             this.lTeamBox.Name = "lTeamBox";
-            this.lTeamBox.Size = new System.Drawing.Size(115, 20);
+            this.lTeamBox.Size = new System.Drawing.Size(226, 32);
             this.lTeamBox.TabIndex = 1;
             this.lTeamBox.Text = "Red team score: 0";
             // 
             // loadScore
             // 
+            this.loadScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadScore.Location = new System.Drawing.Point(3, 3);
             this.loadScore.Name = "loadScore";
-            this.loadScore.Size = new System.Drawing.Size(75, 23);
+            this.loadScore.Size = new System.Drawing.Size(155, 44);
             this.loadScore.TabIndex = 3;
             this.loadScore.Text = "load score";
             this.loadScore.UseVisualStyleBackColor = true;
@@ -135,9 +139,10 @@
             // 
             // bluePlayers
             // 
+            this.bluePlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bluePlayers.Location = new System.Drawing.Point(582, 367);
             this.bluePlayers.Name = "bluePlayers";
-            this.bluePlayers.Size = new System.Drawing.Size(75, 23);
+            this.bluePlayers.Size = new System.Drawing.Size(155, 47);
             this.bluePlayers.TabIndex = 3;
             this.bluePlayers.Text = "Blue team";
             this.bluePlayers.UseVisualStyleBackColor = true;
