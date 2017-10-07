@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BallTracking.cs" />
     <Compile Include="BlueTeamFigures.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FileIO.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScoreCounter.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Structs.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
