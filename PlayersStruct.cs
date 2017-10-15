@@ -13,7 +13,7 @@ namespace RedBallTracker
 
         public String Player2 { get; set; }
     }
-    static class Structs
+    static class PlayersStruct
     {
         public static Names name;
 
