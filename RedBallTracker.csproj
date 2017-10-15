@@ -72,7 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScoreCounter.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Structs.cs" />
+    <Compile Include="PlayersStruct.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

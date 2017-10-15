@@ -32,8 +32,8 @@ namespace RedBallTracker
             //TODO Karolis Optional variables
             new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
             new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
-            Structs.name.Player1 = Player1;
-            Structs.name.Player2 = Player2;
+            PlayersStruct.name.Player1 = Player1;
+            PlayersStruct.name.Player2 = Player2;
 
             try
             {
@@ -56,7 +56,7 @@ namespace RedBallTracker
             Mat imgOriginal;
             imgOriginal = capWebcam.QueryFrame();
             Thread.Sleep(1000 / 120);
-            
+
             if (imgOriginal == null)
             {
                 //TODO Karolis Named variables
@@ -70,8 +70,8 @@ namespace RedBallTracker
             //tracker.Track(imgOriginal, scoreCounter);
             ibThresh.Image = tracker.Track(imgOriginal, scoreCounter);
             ibOriginal.Image = imgOriginal;
-            lTeamBox.Text = Constants.PlayerPlaceHolder + Structs.name.Player1 + " " + scoreCounter.ScoreTeamRed;
-            rTeamBox.Text = Constants.PlayerPlaceHolder + Structs.name.Player2 + " " + scoreCounter.ScoreTeamBlue;
+            lTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + " " + scoreCounter.ScoreTeamRed;
+            rTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player2 + " " + scoreCounter.ScoreTeamBlue;
 
         }
 

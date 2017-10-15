@@ -22,7 +22,7 @@ namespace RedBallTracker
             {
                 ScoreTeamRed = ScoreTeamRed.IncreaseScore();
             }
-            else if (coordinate > 596)
+            else if (coordinate > 599)
             {
                 ScoreTeamBlue = ScoreTeamBlue.IncreaseScore();
             }
