@@ -3,26 +3,43 @@
 namespace RedBallTracker
 {
     //TODO Karolis IComparer
-
     public class ScoreCounter : IComparer<int>
     {
+        //ToDo Karolis: delegate
+        public delegate int CountScoreDelegate(float coordinate);
+
         //TODO Karolis auto-implemented properties
         public int ScoreTeamBlue { get; set; }
         public int ScoreTeamRed { get; set; }
-
-
+        public CountScoreDelegate countScoreDelegate = new CountScoreDelegate(checkCoordinate);
         public ScoreCounter()
         {
 
         }
-        //TODO Adomas: Extension methods
-        public void countScore(float coordinate)
+
+        public static int checkCoordinate(float coordinate)
         {
-            if (coordinate < 15)
+            if(coordinate < 15)
+            {
+                return 1;
+            }
+            else if (coordinate > 599)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        //TODO Adomas: Extension methods
+        public void countScore(float coordinate, CountScoreDelegate countScoreDelegate)
+        {
+            if (countScoreDelegate(coordinate) == 1)
             {
                 ScoreTeamRed = ScoreTeamRed.IncreaseScore();
             }
-            else if (coordinate > 599)
+            else if (countScoreDelegate(coordinate) == -1)
             {
                 ScoreTeamBlue = ScoreTeamBlue.IncreaseScore();
             }
