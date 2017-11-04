@@ -5,6 +5,7 @@ namespace RedBallTracker
     //TODO Karolis IComparer
     public class ScoreCounter : IComparer<int>
     {
+        //ToDo Karolis: delegate
         public delegate int CountScoreDelegate(float coordinate);
 
         //TODO Karolis auto-implemented properties
