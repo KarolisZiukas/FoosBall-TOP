@@ -13,6 +13,10 @@ namespace RedBallTracker
         //TODO Adomas: anonymous methods
         public delegate void ReachedMaximumScore(int scoreRedTeam, int scoreBlueTeam);
 
+
+        public delegate void ScoredEventHandler(object source, EventArgs eventArgs);
+        public event ScoredEventHandler GoalScored;
+
         public delegate int Coordinates(float coordinate);
 
         //TODO Karolis auto-implemented properties
@@ -49,11 +53,15 @@ namespace RedBallTracker
             if (countScoreDelegate(coordinate) == 1)
             {
                 ScoreTeamRed = ScoreTeamRed.IncreaseScore();
+                OnGoalScored();
             }
             else if (countScoreDelegate(coordinate) == -1)
             {
                 ScoreTeamBlue = ScoreTeamBlue.IncreaseScore();
+                OnGoalScored();
+
             }
+
             ReachedMaximumScore maximum = delegate (int scoreBlueTeam, int scoreRedTeam)
             {
                 if (scoreBlueTeam == 10)
@@ -76,6 +84,14 @@ namespace RedBallTracker
             if (x < y)
                 return 1;
             return 0;
+        }
+
+        protected virtual void OnGoalScored()
+        {
+            if(GoalScored != null)
+            {
+                GoalScored(this, EventArgs.Empty);
+            }
         }
     }
 }
