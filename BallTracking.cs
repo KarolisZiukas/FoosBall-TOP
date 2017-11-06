@@ -42,7 +42,6 @@ namespace RedBallTracker
                 CvInvoke.Circle(imgOriginal, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
 
                 score.countScore(circle.Center.X, score.countScoreDelegate);
-                
             }
 
             return imgThresh;

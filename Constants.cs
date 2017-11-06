@@ -16,5 +16,6 @@
         public const string SecondPlayerNameIs = "Second player name is";
         public const string ResultMessage = "Match result: ";
         public const string PlayerPlaceHolder = "Player ";
+        public const string MaximumScoreReached = " has just reached the maximum score";
     }
 }

@@ -1,24 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace RedBallTracker
 {
     //TODO Karolis IComparer
     public class ScoreCounter : IComparer<int>
     {
-        //ToDo Karolis: delegate
+        //TODO Karolis: delegate
         public delegate int CountScoreDelegate(float coordinate);
+
+        //TODO Adomas: anonymous methods
+        public delegate void ReachedMaximumScore(int scoreRedTeam, int scoreBlueTeam);
+
+        public delegate int Coordinates(float coordinate);
 
         //TODO Karolis auto-implemented properties
         public int ScoreTeamBlue { get; set; }
         public int ScoreTeamRed { get; set; }
         public CountScoreDelegate countScoreDelegate = new CountScoreDelegate(checkCoordinate);
+        public Coordinates Coordinate;
         public ScoreCounter()
         {
 
         }
 
+        
+
         public static int checkCoordinate(float coordinate)
         {
+
             if(coordinate < 15)
             {
                 return 1;
@@ -43,6 +54,18 @@ namespace RedBallTracker
             {
                 ScoreTeamBlue = ScoreTeamBlue.IncreaseScore();
             }
+            ReachedMaximumScore maximum = delegate (int scoreBlueTeam, int scoreRedTeam)
+            {
+                if (scoreBlueTeam == 10)
+                {
+                    MessageBox.Show(Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + Constants.MaximumScoreReached);
+                }
+                else if (scoreRedTeam == 10)
+                {
+                    MessageBox.Show(Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + Constants.MaximumScoreReached);
+                }
+            };
+            maximum(ScoreTeamBlue, ScoreTeamRed);
         }
         public int Compare(int x, int y)
         {
