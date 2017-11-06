@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace RedBallTracker
@@ -10,19 +11,25 @@ namespace RedBallTracker
         public delegate int CountScoreDelegate(float coordinate);
 
         //TODO Adomas: anonymous methods
-        public delegate void ReachedMaximumScore(int x, int y);
+        public delegate void ReachedMaximumScore(int scoreRedTeam, int scoreBlueTeam);
+
+        public delegate int Coordinates(float coordinate);
 
         //TODO Karolis auto-implemented properties
         public int ScoreTeamBlue { get; set; }
         public int ScoreTeamRed { get; set; }
         public CountScoreDelegate countScoreDelegate = new CountScoreDelegate(checkCoordinate);
+        public Coordinates Coordinate;
         public ScoreCounter()
         {
 
         }
 
+        
+
         public static int checkCoordinate(float coordinate)
         {
+
             if(coordinate < 15)
             {
                 return 1;
