@@ -79,6 +79,7 @@
     <Compile Include="ScoreCounter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="PlayersStruct.cs" />
+    <Compile Include="SoundService.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
