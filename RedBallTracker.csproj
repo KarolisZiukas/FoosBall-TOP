@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BallTracking.cs" />
     <Compile Include="BlueTeamFigures.cs" />
+    <Compile Include="EmptyNameException.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="frmMain.cs">
