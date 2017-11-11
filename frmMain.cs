@@ -27,8 +27,9 @@ namespace RedBallTracker
 
         VideoCapture capWebcam;
 
-        static HttpListener _httpListener = new HttpListener();
-        //ToDo Karolis: Lazy Initialization
+       
+        static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
+         //ToDo Karolis: Lazy Initialization
         Lazy<BlueTeamFigures> blueTeamFigures = new Lazy<BlueTeamFigures>();
         BallTracking tracker = new BallTracking();
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
@@ -40,11 +41,8 @@ namespace RedBallTracker
             string Player2 = string.Empty;
 
             //SERVERIS
-            Console.WriteLine("Starting server...");
-            _httpListener.Prefixes.Add("http://localhost:5000/"); // add prefix "http://localhost:5000/"
-            _httpListener.Start(); // start server (Run application as Administrator!)
-            Console.WriteLine("Server started.");
-            Thread _responseThread = new Thread(ResponseThread);
+            HttpListener.Init();
+            Thread _responseThread = ResponseThread.Create();
             _responseThread.Start(); // start the response thread
 
             //TODO Karolis Optional variables
@@ -67,20 +65,6 @@ namespace RedBallTracker
             scoreCounter.GoalScored += soundService.OnGoalScored;
             Application.Idle += processFrameAndUpdateGUI;
 
-        }
-        static void ResponseThread()
-        {
-            while (true)
-            {
-                HttpListenerContext context = _httpListener.GetContext(); // get a context
-                                                                          // Now, you'll find the request URL in context.Request.Url
-                byte[] _responseArray = Encoding.UTF8.GetBytes("<html><head><title>Localhost server -- port 5000</title></head>" +
-                "<body>Welcome to the <strong>Localhost server</strong> -- <em>port 5000!</em></body></html>"); // get the bytes to response
-                context.Response.OutputStream.Write(_responseArray, 0, _responseArray.Length); // write bytes to the output stream
-                context.Response.KeepAlive = false; // set the KeepAlive bool to false
-                context.Response.Close(); // close the connection
-                Console.WriteLine("Respone given to a request.");
-            }
         }
         void processFrameAndUpdateGUI(object sender, EventArgs arg)
         {
