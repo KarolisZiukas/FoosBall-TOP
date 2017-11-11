@@ -8,8 +8,8 @@ namespace RedBallTracker
     {
         public void OnGoalScored(object source, EventArgs eventArgs)
         {
-            SoundPlayer soundPlayer = new SoundPlayer(@"..\\projectFiles\\scoreSound.wav");
-            soundPlayer.Play();
+            SoundPlayer goalSoundPlayer = new SoundPlayer(@"..\\projectFiles\\scoreSound.wav");
+            goalSoundPlayer.Play();
         }
     }
 }
