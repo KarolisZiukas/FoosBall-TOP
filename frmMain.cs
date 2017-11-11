@@ -6,6 +6,8 @@ using RabbitMQ.Client;
 using System.Text;
 using System.Net;
 using System.Threading;
+
+
 namespace RedBallTracker
 {
 
@@ -20,10 +22,14 @@ namespace RedBallTracker
     public partial class frmMain : Form
     {
         //public Names name;
-        ScoreCounter scoreCounter = new ScoreCounter();
+        ScoreCounter scoreCounter = new ScoreCounter();  //publisher
+        SoundService soundService = new SoundService();  //subscriber
+
         VideoCapture capWebcam;
-        //ToDo Karolis: Lazy Initialization
+
+       
         static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
+         //ToDo Karolis: Lazy Initialization
         Lazy<BlueTeamFigures> blueTeamFigures = new Lazy<BlueTeamFigures>();
         BallTracking tracker = new BallTracking();
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
@@ -33,6 +39,7 @@ namespace RedBallTracker
             InitializeComponent();
             string Player1 = string.Empty;
             string Player2 = string.Empty;
+
             //SERVERIS
             HttpListener.Init();
             Thread _responseThread = ResponseThread.Create();
@@ -55,12 +62,12 @@ namespace RedBallTracker
                 Environment.Exit(0);
                 return;
             }
+            scoreCounter.GoalScored += soundService.OnGoalScored;
             Application.Idle += processFrameAndUpdateGUI;
 
         }
         void processFrameAndUpdateGUI(object sender, EventArgs arg)
         {
-
             Mat imgOriginal;
             imgOriginal = capWebcam.QueryFrame();
             Thread.Sleep(1000 / 100);
@@ -76,6 +83,7 @@ namespace RedBallTracker
                 return;
             }
             //tracker.Track(imgOriginal, scoreCounter);
+            //scoreCounter.GoalScored += soundService.OnGoalScored;
             ibThresh.Image = tracker.Track(imgOriginal, scoreCounter);
             ibOriginal.Image = imgOriginal;
             lTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + " " + scoreCounter.ScoreTeamRed;
