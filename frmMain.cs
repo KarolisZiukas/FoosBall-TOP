@@ -45,19 +45,28 @@ namespace RedBallTracker
             Thread _responseThread = ResponseThread.Create();
             _responseThread.Start(); // start the response thread
 
-            try
+            int flag = 1;
+            do
             {
-                //TODO Karolis Optional variables
-                new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
-                new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
-                checkIfStringIsEmpty(Player1);
-                checkIfStringIsEmpty(Player2);
-                PlayersStruct.name.Player1 = Player1;
-                PlayersStruct.name.Player2 = Player2;
-            }
-            catch(EmptyNameException emptyNameException) {
-                MessageBox.Show(emptyNameException.Message);
-            }       
+                
+                try
+                {
+                    //TODO Karolis Optional variables
+                    new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
+                    new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
+                    checkIfStringIsEmpty(Player1);
+                    checkIfStringIsEmpty(Player2);
+                    PlayersStruct.name.Player1 = Player1;
+                    PlayersStruct.name.Player2 = Player2;
+                    flag = 1;
+                }
+                catch (EmptyNameException emptyNameException)
+                {
+                    MessageBox.Show(emptyNameException.Message);
+                    flag = 0;
+                }
+            } while (flag == 0);
+                   
 
 
             try
