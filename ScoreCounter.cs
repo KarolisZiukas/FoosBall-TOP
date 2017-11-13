@@ -53,6 +53,7 @@ namespace RedBallTracker
             if (countScoreDelegate(coordinate) == 1)
             {
                 ScoreTeamRed = ScoreTeamRed.IncreaseScore();
+
                 OnGoalScored();
             }
             else if (countScoreDelegate(coordinate) == -1)
