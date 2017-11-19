@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace RedBallTracker
 {
@@ -65,11 +66,13 @@ namespace RedBallTracker
 
             ReachedMaximumScore maximum = delegate (int scoreBlueTeam, int scoreRedTeam)
             {
-                if (scoreBlueTeam == 10)
+                // TODO: Adomas configuration files = app
+                int maximumPossibleScore = Int32.Parse(ConfigurationManager.AppSettings["k1"]);
+                if (scoreBlueTeam == maximumPossibleScore)
                 {
                     MessageBox.Show(Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + Constants.MaximumScoreReached);
                 }
-                else if (scoreRedTeam == 10)
+                else if (scoreRedTeam == maximumPossibleScore)
                 {
                     MessageBox.Show(Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + Constants.MaximumScoreReached);
                 }

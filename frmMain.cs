@@ -2,11 +2,7 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
-using RabbitMQ.Client;
-using System.Text;
-using System.Net;
-using System.Threading;
-
+using RedBallTracker.Properties;
 
 namespace RedBallTracker
 {
@@ -152,6 +148,21 @@ namespace RedBallTracker
             {
                 throw new EmptyNameException();
             }
+        }
+
+        // TODO: Adomas configuration files - User
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Settings.Default["Title"] = textBox1.Text;
+            Settings.Default["Button"] = textBox2.Text;
+            Settings.Default.Save();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            // Configuration for title
+            this.Text = Settings.Default["Title"].ToString();
+            button1.Text = Settings.Default["Button"].ToString();
         }
     }
 

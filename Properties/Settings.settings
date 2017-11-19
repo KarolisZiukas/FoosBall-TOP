@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RedBallTracker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Title" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FoosBall tracker gamez</Value>
+    </Setting>
+    <Setting Name="Button" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Press the button to change the title</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
