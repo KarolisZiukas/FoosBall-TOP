@@ -42,13 +42,7 @@ namespace RedBallTracker
             
             HttpPut put = new HttpPut();
             put.Put();
-            //SERVERIS
-            //HttpListener.Init();
-            //Thread _responseThread = ResponseThread.Create();
-            //_responseThread.Start(); // start the response thread
-
             
-
             int flag = 1;
             do
             {
@@ -106,8 +100,7 @@ namespace RedBallTracker
                 Environment.Exit(0);
                 return;
             }
-            //tracker.Track(imgOriginal, scoreCounter);
-            //scoreCounter.GoalScored += soundService.OnGoalScored;
+
             ibThresh.Image = tracker.Track(imgOriginal, scoreCounter);
             ibOriginal.Image = imgOriginal;
             lTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + " " + Scores.ScoreTeamRed;
@@ -117,27 +110,7 @@ namespace RedBallTracker
 
         private void loadScore_Click(object sender, EventArgs e)
         {
-            //var factory = new ConnectionFactory() { HostName = "localhost" };
-            //using (var connection = factory.CreateConnection())
-            //using (var channel = connection.CreateModel())
-            //{
-            //    channel.QueueDeclare(queue: "hello",
-            //                         durable: false,
-            //                         exclusive: false,
-            //                         autoDelete: false,
-            //                         arguments: null);
-
-            //    string message = "Hello World!";
-            //    var body = Encoding.UTF8.GetBytes(message);
-
-            //    channel.BasicPublish(exchange: "",
-            //                         routingKey: "hello",
-            //                         basicProperties: null,
-            //                         body: body);
-            //    //Console.WriteLine(" [x] Sent {0}", message);
-            //    loadedScore.Text = (message);
-            //}
-
+  
         }
 
         private void bluePlayers_Click(object sender, EventArgs e)
