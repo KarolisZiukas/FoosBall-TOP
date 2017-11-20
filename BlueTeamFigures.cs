@@ -8,8 +8,9 @@ namespace RedBallTracker
 {
     class BlueTeamFigures
     {
-        public delegate int arrayDelegate();
-        arrayDelegate size;
+        
+        public delegate int arrayDelegate<T>();
+        arrayDelegate<int> size;
         //TODO Karolis Indexed properties for demo purposes, not really useful
         private string[] figuresNames = new string[5]
         {
