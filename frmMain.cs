@@ -1,8 +1,10 @@
 ﻿using Emgu.CV;
 using System;
+using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 using RedBallTracker.Properties;
+
 
 namespace RedBallTracker
 {
@@ -29,17 +31,23 @@ namespace RedBallTracker
         Lazy<BlueTeamFigures> blueTeamFigures = new Lazy<BlueTeamFigures>();
         BallTracking tracker = new BallTracking();
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
+        public static readonly HttpClient client = new HttpClient();
+        public static string url = "http://localhost:5000/api/scores/";
 
         public frmMain()
         {
             InitializeComponent();
             string Player1 = string.Empty;
             string Player2 = string.Empty;
-
+            
+            HttpPut put = new HttpPut();
+            put.Put();
             //SERVERIS
-            HttpListener.Init();
-            Thread _responseThread = ResponseThread.Create();
-            _responseThread.Start(); // start the response thread
+            //HttpListener.Init();
+            //Thread _responseThread = ResponseThread.Create();
+            //_responseThread.Start(); // start the response thread
+
+            
 
             int flag = 1;
             do
@@ -89,8 +97,10 @@ namespace RedBallTracker
             if (imgOriginal == null)
             {
                 //TODO Karolis Named variables
-                new FileIO().writeToFile(blueTeam: scoreCounter.ScoreTeamBlue, redTeam: scoreCounter.ScoreTeamRed);
-                EndResult endResult = (EndResult)scoreCounter.Compare(scoreCounter.ScoreTeamBlue, scoreCounter.ScoreTeamRed);
+                new FileIO().writeToFile(blueTeam: Scores.ScoreTeamBlue, redTeam: Scores.ScoreTeamRed);
+                int scBlue = Scores.ScoreTeamBlue;
+                int scRed = Scores.ScoreTeamRed;
+                EndResult endResult = (EndResult)scoreCounter.Compare<int>(ref scBlue, ref scRed);
                 MessageBox.Show(Constants.ResultMessage + endResult);
 
                 Environment.Exit(0);
@@ -100,8 +110,8 @@ namespace RedBallTracker
             //scoreCounter.GoalScored += soundService.OnGoalScored;
             ibThresh.Image = tracker.Track(imgOriginal, scoreCounter);
             ibOriginal.Image = imgOriginal;
-            lTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + " " + scoreCounter.ScoreTeamRed;
-            rTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player2 + " " + scoreCounter.ScoreTeamBlue;
+            lTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + " " + Scores.ScoreTeamRed;
+            rTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player2 + " " + Scores.ScoreTeamBlue;
 
         }
 

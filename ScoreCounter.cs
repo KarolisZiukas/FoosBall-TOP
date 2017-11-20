@@ -6,13 +6,13 @@ using System.Configuration;
 namespace RedBallTracker
 {
     //TODO Karolis IComparer
-    public class ScoreCounter : IComparer<int>
+    public class ScoreCounter
     {
         //TODO Karolis: delegate
-        public delegate int CountScoreDelegate(float coordinate);
+        public delegate int CountScoreDelegate<T>(T coordinate);   //generic delegate
 
         //TODO Adomas: anonymous methods
-        public delegate void ReachedMaximumScore(int scoreRedTeam, int scoreBlueTeam);
+        public delegate void ReachedMaximumScore (int scoreRedTeam, int scoreBlueTeam);
 
 
         public delegate void ScoredEventHandler(object source, EventArgs eventArgs);
@@ -21,9 +21,7 @@ namespace RedBallTracker
         public delegate int Coordinates(float coordinate);
 
         //TODO Karolis auto-implemented properties
-        public int ScoreTeamBlue { get; set; }
-        public int ScoreTeamRed { get; set; }
-        public CountScoreDelegate countScoreDelegate = new CountScoreDelegate(checkCoordinate);
+        public CountScoreDelegate<float>  countScoreDelegate = new CountScoreDelegate<float>(checkCoordinate);
         public Coordinates Coordinate;
         public ScoreCounter()
         {
@@ -49,17 +47,17 @@ namespace RedBallTracker
             }
         }
         //TODO Adomas: Extension methods
-        public void countScore(float coordinate, CountScoreDelegate countScoreDelegate)
+        public void countScore(float coordinate, CountScoreDelegate<float> countScoreDelegate)
         {
             if (countScoreDelegate(coordinate) == 1)
             {
-                ScoreTeamRed = ScoreTeamRed.IncreaseScore();
+                Scores.ScoreTeamRed = Scores.ScoreTeamRed.IncreaseScore();
 
                 OnGoalScored();
             }
             else if (countScoreDelegate(coordinate) == -1)
             {
-                ScoreTeamBlue = ScoreTeamBlue.IncreaseScore();
+                Scores.ScoreTeamBlue = Scores.ScoreTeamBlue.IncreaseScore();
                 OnGoalScored();
 
             }
@@ -77,25 +75,25 @@ namespace RedBallTracker
                     MessageBox.Show(Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + Constants.MaximumScoreReached);
                 }
             };
-            maximum(ScoreTeamBlue, ScoreTeamRed);
+            maximum(Scores.ScoreTeamBlue, Scores.ScoreTeamRed);
         }
-        public int Compare(int x, int y)
+        //Generic method
+        public int Compare<T>(ref T x, ref T y) where T : System.IComparable<T>
         {
-            if (x > y)
+            if (x.CompareTo(y) > 0)
                 return -1;
-            if (x == y)
+            if (x.CompareTo(y) ==0)
                 return 0;
-            if (x < y)
+            if (x.CompareTo(y) <0)
                 return 1;
             return 0;
         }
 
         protected virtual void OnGoalScored()
         {
-            if(GoalScored != null)
-            {
-                GoalScored(this, EventArgs.Empty);
-            }
+            HttpPut put = new HttpPut();
+            put.Put();
+            GoalScored?.Invoke(this, EventArgs.Empty);
         }
     }
 }
