@@ -4,8 +4,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 using RedBallTracker.Properties;
-
-
+using System.Data.SqlClient;
+using System.Linq;
 namespace RedBallTracker
 {
 
@@ -26,6 +26,8 @@ namespace RedBallTracker
         VideoCapture capWebcam;
 
        
+
+
         static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
          //ToDo Karolis: Lazy Initialization
         Lazy<BlueTeamFigures> blueTeamFigures = new Lazy<BlueTeamFigures>();
@@ -33,16 +35,19 @@ namespace RedBallTracker
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
         public static readonly HttpClient client = new HttpClient();
         public static string url = "http://localhost:5000/api/scores/";
+        MainModel database = new MainModel(); 
 
         public frmMain()
         {
+
+            
             InitializeComponent();
             string Player1 = string.Empty;
             string Player2 = string.Empty;
             
             HttpPut put = new HttpPut();
             put.Put();
-            
+
             int flag = 1;
             do
             {
@@ -96,7 +101,16 @@ namespace RedBallTracker
                 int scRed = Scores.ScoreTeamRed;
                 EndResult endResult = (EndResult)scoreCounter.Compare<int>(ref scBlue, ref scRed);
                 MessageBox.Show(Constants.ResultMessage + endResult);
-
+                //ToDo: Karolis Database Add
+                var result = new ScoreDB
+                {
+                    BlueTeam = Scores.ScoreTeamBlue,
+                    RedTeam = Scores.ScoreTeamRed,
+                    Date = DateTime.Now,
+                    MatchResult = string.Empty + endResult
+                };
+                database.Scores.Add(result);
+                database.SaveChanges();
                 Environment.Exit(0);
                 return;
             }
@@ -146,6 +160,22 @@ namespace RedBallTracker
             // Configuration for title
             this.Text = Settings.Default["Title"].ToString();
             button1.Text = Settings.Default["Button"].ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var query = from b in database.Scores
+                         orderby b.Date ascending
+                         select b;
+
+            foreach (var item in query)
+            {
+                last_match_time.AppendText(item.Date + " ");
+                last_match_result.AppendText(item.MatchResult + " ");
+                red_team_last_result.AppendText(item.RedTeam + " "); ;
+                blue_team_last_result.AppendText(item.BlueTeam + " "); ;
+            }
+          
         }
     }
 

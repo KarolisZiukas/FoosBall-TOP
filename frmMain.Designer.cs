@@ -43,6 +43,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.blue_team_last_result = new System.Windows.Forms.TextBox();
+            this.last_match_result = new System.Windows.Forms.TextBox();
+            this.red_team_last_result = new System.Windows.Forms.TextBox();
+            this.last_match_time = new System.Windows.Forms.TextBox();
+            this.load_last_rezult = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -196,11 +202,64 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Button";
             // 
+            // blue_team_last_result
+            // 
+            this.blue_team_last_result.Location = new System.Drawing.Point(18, 526);
+            this.blue_team_last_result.Name = "blue_team_last_result";
+            this.blue_team_last_result.Size = new System.Drawing.Size(100, 20);
+            this.blue_team_last_result.TabIndex = 6;
+            // 
+            // last_match_result
+            // 
+            this.last_match_result.Location = new System.Drawing.Point(18, 560);
+            this.last_match_result.Name = "last_match_result";
+            this.last_match_result.Size = new System.Drawing.Size(100, 20);
+            this.last_match_result.TabIndex = 7;
+            // 
+            // red_team_last_result
+            // 
+            this.red_team_last_result.Location = new System.Drawing.Point(133, 526);
+            this.red_team_last_result.Name = "red_team_last_result";
+            this.red_team_last_result.Size = new System.Drawing.Size(100, 20);
+            this.red_team_last_result.TabIndex = 8;
+            // 
+            // last_match_time
+            // 
+            this.last_match_time.Location = new System.Drawing.Point(133, 559);
+            this.last_match_time.Name = "last_match_time";
+            this.last_match_time.Size = new System.Drawing.Size(100, 20);
+            this.last_match_time.TabIndex = 9;
+            // 
+            // load_last_rezult
+            // 
+            this.load_last_rezult.Location = new System.Drawing.Point(265, 523);
+            this.load_last_rezult.Name = "load_last_rezult";
+            this.load_last_rezult.Size = new System.Drawing.Size(113, 23);
+            this.load_last_rezult.TabIndex = 10;
+            this.load_last_rezult.Text = "Load Last Rezult";
+            this.load_last_rezult.UseVisualStyleBackColor = true;
+            this.load_last_rezult.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(978, 527);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(155, 47);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1301, 644);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.load_last_rezult);
+            this.Controls.Add(this.last_match_time);
+            this.Controls.Add(this.red_team_last_result);
+            this.Controls.Add(this.last_match_result);
+            this.Controls.Add(this.blue_team_last_result);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
@@ -236,6 +295,12 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox blue_team_last_result;
+        private System.Windows.Forms.TextBox last_match_result;
+        private System.Windows.Forms.TextBox red_team_last_result;
+        private System.Windows.Forms.TextBox last_match_time;
+        private System.Windows.Forms.Button load_last_rezult;
+        private System.Windows.Forms.Button button2;
     }
 }
 
