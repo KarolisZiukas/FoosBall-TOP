@@ -49,6 +49,7 @@
             this.last_match_time = new System.Windows.Forms.TextBox();
             this.load_last_rezult = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.Data = new System.Windows.Forms.TextBox();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -249,11 +250,20 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // Data
+            // 
+            this.Data.Location = new System.Drawing.Point(430, 527);
+            this.Data.Multiline = true;
+            this.Data.Name = "Data";
+            this.Data.Size = new System.Drawing.Size(111, 74);
+            this.Data.TabIndex = 12;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1301, 644);
+            this.Controls.Add(this.Data);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.load_last_rezult);
             this.Controls.Add(this.last_match_time);
@@ -301,6 +311,7 @@
         private System.Windows.Forms.TextBox last_match_time;
         private System.Windows.Forms.Button load_last_rezult;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox Data;
     }
 }
 

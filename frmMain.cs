@@ -6,6 +6,9 @@ using System.Windows.Forms;
 using RedBallTracker.Properties;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Data.Common;
+using System.Configuration;
+
 namespace RedBallTracker
 {
 
@@ -101,8 +104,75 @@ namespace RedBallTracker
                 int scRed = Scores.ScoreTeamRed;
                 EndResult endResult = (EndResult)scoreCounter.Compare<int>(ref scBlue, ref scRed);
                 MessageBox.Show(Constants.ResultMessage + endResult);
-                //ToDo: Karolis Database Add
-                var result = new ScoreDB
+
+                // App.config stores configuration data
+                // System.Data.SqlClient provides classes
+                // for accessing a SQL Server DB
+
+                // connectionString defines the DB name, and
+                // other parameters for connecting to the DB
+
+                // Configurationmanager provides access to
+                // config data in App.config
+                string provider = ConfigurationManager.AppSettings["scores"];
+
+                string connectionString = ConfigurationManager.AppSettings["connectionString"];
+
+                // DbProviderFactories generates an 
+                // instance of a DbProviderFactory
+                DbProviderFactory factory = DbProviderFactories.GetFactory(provider);
+
+                // The DBConnection represents the DB connection
+                using (DbConnection connection =
+                    factory.CreateConnection())
+                {
+                    // Check if a connection was made
+                    if (connection == null)
+                    {
+                        MessageBox.Show("Connection Error");
+                        Console.ReadLine();
+                        return;
+                    }
+
+                    // The DB data needed to open the correct DB
+                    connection.ConnectionString = connectionString;
+
+                    // Open the DB connection
+                    connection.Open();
+
+                    // Allows you to pass queries to the DB
+                    DbCommand command = factory.CreateCommand();
+
+                    if (command == null)
+                    {
+                        MessageBox.Show("Command Error");
+                        Console.ReadLine();
+                        return;
+                    }
+
+                    // Set the DB connection for commands
+                    command.Connection = connection;
+
+                    // The query you want to issue
+                    command.CommandText = "Select * From Scores";
+
+                    // DbDataReader reads the row results
+                    // from the query
+                    using (DbDataReader dataReader = command.ExecuteReader())
+                    {
+                        // Advance to the next results
+                        while (dataReader.Read())
+                        {
+                            // Output results using row names
+                            MessageBox.Show(($"{dataReader["Id"]} " +
+                                $"{dataReader["PlayerName"]}"));
+                        }
+                    }
+                    //Console.ReadLine();
+                }
+
+                    //ToDo: Karolis Database Add
+                    var result = new ScoreDB
                 {
                     BlueTeam = Scores.ScoreTeamBlue,
                     RedTeam = Scores.ScoreTeamRed,
