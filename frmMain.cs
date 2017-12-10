@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Data.Common;
 using System.Configuration;
+using System.Data;
 
 namespace RedBallTracker
 {
@@ -25,9 +26,15 @@ namespace RedBallTracker
         //public Names name;
         ScoreCounter scoreCounter = new ScoreCounter();  //publisher
         SoundService soundService = new SoundService();  //subscriber
-
+        private DbProviderFactory factory;
+        DbConnection connection;
+        SqlConnection connection2;
         VideoCapture capWebcam;
-
+        DataTable scoresDatatable;
+        DbCommand command;
+        string connectionString;
+        string selectParameter;
+        string querryString = "select * from dbo.scores";
        
 
 
@@ -38,7 +45,7 @@ namespace RedBallTracker
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
         public static readonly HttpClient client = new HttpClient();
         public static string url = "http://localhost:5000/api/scores/";
-        MainModel database = new MainModel(); 
+        Model1 database = new Model1(); 
 
         public frmMain()
         {
@@ -50,7 +57,6 @@ namespace RedBallTracker
             
             HttpPut put = new HttpPut();
             put.Put();
-
             int flag = 1;
             do
             {
@@ -78,7 +84,6 @@ namespace RedBallTracker
             try
             {
                 capWebcam = new VideoCapture(VIDEO_DIR);
-
             }
             catch (Exception ex)
             {
@@ -86,6 +91,14 @@ namespace RedBallTracker
                 Environment.Exit(0);
                 return;
             }
+            //ToDo: Karolis dataTable
+            scoresDatatable = new DataTable();
+            scoresDatatable.Columns.Add("blueTeam", typeof(int));
+            scoresDatatable.Columns.Add("redTeam", typeof(int));
+            scoresDatatable.Columns.Add("date", typeof(DateTime));
+            scoresDatatable.Columns.Add("matchResult", typeof(string));
+
+
             scoreCounter.GoalScored += soundService.OnGoalScored;
             Application.Idle += processFrameAndUpdateGUI;
 
@@ -104,83 +117,25 @@ namespace RedBallTracker
                 int scRed = Scores.ScoreTeamRed;
                 EndResult endResult = (EndResult)scoreCounter.Compare<int>(ref scBlue, ref scRed);
                 MessageBox.Show(Constants.ResultMessage + endResult);
+                //ToDo: Saves result at the end of the match
 
-                // App.config stores configuration data
-                // System.Data.SqlClient provides classes
-                // for accessing a SQL Server DB
-
-                // connectionString defines the DB name, and
-                // other parameters for connecting to the DB
-
-                // Configurationmanager provides access to
-                // config data in App.config
-                string provider = ConfigurationManager.AppSettings["scores"];
-
-                string connectionString = ConfigurationManager.AppSettings["connectionString"];
-
-                // DbProviderFactories generates an 
-                // instance of a DbProviderFactory
-                DbProviderFactory factory = DbProviderFactories.GetFactory(provider);
-
-                // The DBConnection represents the DB connection
-                using (DbConnection connection =
-                    factory.CreateConnection())
+                scoresDatatable.Rows.Add(Scores.ScoreTeamBlue, Scores.ScoreTeamRed, DateTime.Now, endResult);
+                var result = new Score { };
+                foreach (DataRow row in scoresDatatable.Rows)
                 {
-                    // Check if a connection was made
-                    if (connection == null)
+                    result = new Score
                     {
-                        MessageBox.Show("Connection Error");
-                        Console.ReadLine();
-                        return;
-                    }
-
-                    // The DB data needed to open the correct DB
-                    connection.ConnectionString = connectionString;
-
-                    // Open the DB connection
-                    connection.Open();
-
-                    // Allows you to pass queries to the DB
-                    DbCommand command = factory.CreateCommand();
-
-                    if (command == null)
-                    {
-                        MessageBox.Show("Command Error");
-                        Console.ReadLine();
-                        return;
-                    }
-
-                    // Set the DB connection for commands
-                    command.Connection = connection;
-
-                    // The query you want to issue
-                    command.CommandText = "Select * From Scores";
-
-                    // DbDataReader reads the row results
-                    // from the query
-                    using (DbDataReader dataReader = command.ExecuteReader())
-                    {
-                        // Advance to the next results
-                        while (dataReader.Read())
-                        {
-                            // Output results using row names
-                            MessageBox.Show(($"{dataReader["Id"]} " +
-                                $"{dataReader["PlayerName"]}"));
-                        }
-                    }
-                    //Console.ReadLine();
+                        blueTeam = row.Field<int>(0),
+                        redTeam = row.Field<int>(1),
+                        date = row.Field<DateTime>(2),
+                        matchResult = string.Empty + row.Field<string>(3)
+                    };
                 }
-
-                    //ToDo: Karolis Database Add
-                    var result = new ScoreDB
-                {
-                    BlueTeam = Scores.ScoreTeamBlue,
-                    RedTeam = Scores.ScoreTeamRed,
-                    Date = DateTime.Now,
-                    MatchResult = string.Empty + endResult
-                };
                 database.Scores.Add(result);
+
                 database.SaveChanges();
+                // Here we add five DataRows.
+
                 Environment.Exit(0);
                 return;
             }
@@ -190,7 +145,11 @@ namespace RedBallTracker
             lTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player1 + " " + Scores.ScoreTeamRed;
             rTeamBox.Text = Constants.PlayerPlaceHolder + PlayersStruct.name.Player2 + " " + Scores.ScoreTeamBlue;
 
+
         }
+
+
+
 
         private void loadScore_Click(object sender, EventArgs e)
         {
@@ -235,17 +194,120 @@ namespace RedBallTracker
         private void button2_Click(object sender, EventArgs e)
         {
             var query = from b in database.Scores
-                         orderby b.Date ascending
+                         orderby b.date ascending
                          select b;
 
             foreach (var item in query)
             {
-                last_match_time.AppendText(item.Date + " ");
-                last_match_result.AppendText(item.MatchResult + " ");
-                red_team_last_result.AppendText(item.RedTeam + " "); ;
-                blue_team_last_result.AppendText(item.BlueTeam + " "); ;
+                last_match_time.AppendText(item.date + " ");
+                last_match_result.AppendText(item.matchResult + " ");
+                red_team_last_result.AppendText(item.redTeam + " "); ;
+                blue_team_last_result.AppendText(item.blueTeam + " "); ;
             }
           
+        }
+
+       public void  openDatabaseConnection(string querryString)
+        {
+            string provider = ConfigurationManager.AppSettings["scores"];
+            connectionString = ConfigurationManager.AppSettings["connectionString"];
+
+            factory = DbProviderFactories.GetFactory(provider);
+
+
+            using (connection =
+                factory.CreateConnection())
+            {
+
+                if (connection == null)
+                {
+                    MessageBox.Show("Connection Error");
+                    Console.ReadLine();
+                    return;
+                }
+                connection.ConnectionString = connectionString;
+
+                connection.Open();
+                //SqlDataAdapter da = new SqlDataAdapter();
+                //SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.scores", connection2);
+                //da.SelectCommand = sqlCommand;
+                //DataSet dataSet = new DataSet();
+                //da.Fill(dataSet);
+                //MessageBox.Show(dataSet.Tables[0].Rows[0]["redTeam"].ToString());
+                selectQuerry(querryString);
+
+            }
+        }
+
+        public void selectQuerry(String querryString)
+        {
+            command  = factory.CreateCommand();
+
+            if (command == null)
+            {
+                MessageBox.Show("Command Error");
+                Console.ReadLine();
+                return;
+            }
+
+            command.Connection = connection;
+
+            command.CommandText = querryString;
+
+
+            using (DbDataReader dataReader = command.ExecuteReader())
+            {
+                while (dataReader.Read())
+                {
+       
+                    listBox1.Items.Add(($"{dataReader[selectParameter]}" ));
+                }
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            selectParameter = String.Empty;
+            new OpeningDialogs().inputBox("Enter what you want to select", Constants.SecondPlayerNameIs, ref selectParameter);
+            string insert = @"select " + selectParameter + " from scores";
+            listBox1.Items.Clear();
+            openDatabaseConnection(insert);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void delete_button_Click(object sender, EventArgs e)
+        {
+            openDatabaseConnection("delete from dbo.scores");
+            database.SaveChanges();
+        }
+
+        private void update_button_Click(object sender, EventArgs e)
+        {
+            string columnToUpdate = string.Empty;
+            string updatedValue = string.Empty;
+            new OpeningDialogs().inputBox("Enter column you want to update", "Enter column you want to update", ref columnToUpdate);
+            new OpeningDialogs().inputBox("Enter value", "Enter value", ref updatedValue);
+            openDatabaseConnection("update dbo.scores set " + columnToUpdate + " = " + updatedValue + " where matchResult = 'tie'");
+        }
+
+        private void insert_button_Click(object sender, EventArgs e)
+        {
+            DateTime time = DateTime.Now;       
+            string format = "yyyy-MM-dd HH:mm:ss";   
+            string insert = @" insert into dbo.Scores values (1, 4,'" + time.ToString(format) + "', 'tie')";
+            openDatabaseConnection(insert);
+            database.SaveChanges();
+
+
+        }
+
+        private void save_with_data_table_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 
