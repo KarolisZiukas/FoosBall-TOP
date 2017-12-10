@@ -35,32 +35,32 @@ namespace RedBallTracker
         string connectionString;
         string selectParameter;
         string querryString = "select * from dbo.scores";
-       
+
 
 
         static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
-         //ToDo Karolis: Lazy Initialization
+        //ToDo Karolis: Lazy Initialization
         Lazy<BlueTeamFigures> blueTeamFigures = new Lazy<BlueTeamFigures>();
         BallTracking tracker = new BallTracking();
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
         public static readonly HttpClient client = new HttpClient();
         public static string url = "http://localhost:5000/api/scores/";
-        Model1 database = new Model1(); 
+        Model1 database = new Model1();
 
         public frmMain()
         {
 
-            
+
             InitializeComponent();
             string Player1 = string.Empty;
             string Player2 = string.Empty;
-            
+
             HttpPut put = new HttpPut();
             put.Put();
             int flag = 1;
             do
             {
-                
+
                 try
                 {
                     //TODO Karolis Optional variables
@@ -78,7 +78,7 @@ namespace RedBallTracker
                     flag = 0;
                 }
             } while (flag == 0);
-                   
+
 
 
             try
@@ -153,7 +153,7 @@ namespace RedBallTracker
 
         private void loadScore_Click(object sender, EventArgs e)
         {
-  
+
         }
 
         private void bluePlayers_Click(object sender, EventArgs e)
@@ -170,7 +170,7 @@ namespace RedBallTracker
 
         public void checkIfStringIsEmpty(string emptyString)
         {
-            if(emptyString == "")
+            if (emptyString == "")
             {
                 throw new EmptyNameException();
             }
@@ -194,8 +194,8 @@ namespace RedBallTracker
         private void button2_Click(object sender, EventArgs e)
         {
             var query = from b in database.Scores
-                         orderby b.date ascending
-                         select b;
+                        orderby b.date ascending
+                        select b;
 
             foreach (var item in query)
             {
@@ -204,10 +204,10 @@ namespace RedBallTracker
                 red_team_last_result.AppendText(item.redTeam + " "); ;
                 blue_team_last_result.AppendText(item.blueTeam + " "); ;
             }
-          
+
         }
 
-       public void  openDatabaseConnection(string querryString)
+        public void openDatabaseConnection(string querryString)
         {
             string provider = ConfigurationManager.AppSettings["scores"];
             connectionString = ConfigurationManager.AppSettings["connectionString"];
@@ -241,7 +241,7 @@ namespace RedBallTracker
 
         public void selectQuerry(String querryString)
         {
-            command  = factory.CreateCommand();
+            command = factory.CreateCommand();
 
             if (command == null)
             {
@@ -259,8 +259,7 @@ namespace RedBallTracker
             {
                 while (dataReader.Read())
                 {
-       
-                    listBox1.Items.Add(($"{dataReader[selectParameter]}" ));
+                    listBox1.Items.Add(($"{dataReader[selectParameter]}"));
                 }
             }
         }
@@ -296,8 +295,8 @@ namespace RedBallTracker
 
         private void insert_button_Click(object sender, EventArgs e)
         {
-            DateTime time = DateTime.Now;       
-            string format = "yyyy-MM-dd HH:mm:ss";   
+            DateTime time = DateTime.Now;
+            string format = "yyyy-MM-dd HH:mm:ss";
             string insert = @" insert into dbo.Scores values (1, 4,'" + time.ToString(format) + "', 'tie')";
             openDatabaseConnection(insert);
             database.SaveChanges();
@@ -307,10 +306,42 @@ namespace RedBallTracker
 
         private void save_with_data_table_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void buttonGroup_Click(object sender, EventArgs e)
+        {
+            var query = from b in database.Scores
+                        group b by b.redTeam into r
+                        select r;
+
+            foreach (var item in query)
+            {
+                listBox1.Items.Add(item.Key);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var query = from b in database.Scores
+                        orderby b.date ascending
+                        select b;
+            var skipping = query.Skip(1).Take(3);
+
+            foreach (var item in skipping)
+            {
+                listBox1.Items.Add(item.matchResult);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var query = from b in database.Scores
+                        orderby b.date ascending
+                        select b.matchResult;
+            var sum = query.Aggregate((a, b) => a + ',' + b);
+
+            listBox1.Items.Add(sum);
         }
     }
-
-
-
 }

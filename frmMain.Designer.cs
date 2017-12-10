@@ -55,6 +55,9 @@
             this.update_button = new System.Windows.Forms.Button();
             this.insert_button = new System.Windows.Forms.Button();
             this.save_with_data_table = new System.Windows.Forms.Button();
+            this.buttonGroup = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -168,7 +171,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(788, 527);
+            this.button1.Location = new System.Drawing.Point(755, 527);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 47);
             this.button1.TabIndex = 1;
@@ -313,11 +316,44 @@
             this.save_with_data_table.UseVisualStyleBackColor = true;
             this.save_with_data_table.Click += new System.EventHandler(this.save_with_data_table_Click);
             // 
+            // buttonGroup
+            // 
+            this.buttonGroup.Location = new System.Drawing.Point(1193, 380);
+            this.buttonGroup.Name = "buttonGroup";
+            this.buttonGroup.Size = new System.Drawing.Size(84, 35);
+            this.buttonGroup.TabIndex = 18;
+            this.buttonGroup.Text = "Group";
+            this.buttonGroup.UseVisualStyleBackColor = true;
+            this.buttonGroup.Click += new System.EventHandler(this.buttonGroup_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1193, 421);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(84, 35);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1193, 462);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(84, 30);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1301, 644);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonGroup);
             this.Controls.Add(this.save_with_data_table);
             this.Controls.Add(this.insert_button);
             this.Controls.Add(this.update_button);
@@ -377,6 +413,9 @@
         private System.Windows.Forms.Button update_button;
         private System.Windows.Forms.Button insert_button;
         private System.Windows.Forms.Button save_with_data_table;
+        private System.Windows.Forms.Button buttonGroup;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

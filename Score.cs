@@ -24,5 +24,6 @@ namespace RedBallTracker
 
         [StringLength(30)]
         public string matchResult { get; set; }
+        public object Key { get; internal set; }
     }
 }
