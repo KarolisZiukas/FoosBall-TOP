@@ -8,7 +8,7 @@ namespace RedBallTracker
         public static void Init()
         {
             Console.WriteLine("Setting up listener");
-            listener.Prefixes.Add("http://172.24.3.145:5000/api/scores");
+            listener.Prefixes.Add("http://localhost:5000/api/scores");
             listener.Start();
             if (listener.IsListening)
             {

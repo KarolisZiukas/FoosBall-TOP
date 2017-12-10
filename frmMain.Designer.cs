@@ -50,6 +50,11 @@
             this.load_last_rezult = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Data = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.delete_button = new System.Windows.Forms.Button();
+            this.update_button = new System.Windows.Forms.Button();
+            this.insert_button = new System.Windows.Forms.Button();
+            this.save_with_data_table = new System.Windows.Forms.Button();
             this.tlpOuter.SuspendLayout();
             this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
@@ -237,18 +242,19 @@
             this.load_last_rezult.Name = "load_last_rezult";
             this.load_last_rezult.Size = new System.Drawing.Size(113, 23);
             this.load_last_rezult.TabIndex = 10;
-            this.load_last_rezult.Text = "Load Last Rezult";
+            this.load_last_rezult.Text = "Load Last Result";
             this.load_last_rezult.UseVisualStyleBackColor = true;
             this.load_last_rezult.Click += new System.EventHandler(this.button2_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(978, 527);
+            this.button2.Location = new System.Drawing.Point(1193, 233);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 47);
+            this.button2.Size = new System.Drawing.Size(84, 30);
             this.button2.TabIndex = 11;
-            this.button2.Text = "button2";
+            this.button2.Text = "SELECT";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Data
             // 
@@ -258,11 +264,65 @@
             this.Data.Size = new System.Drawing.Size(111, 74);
             this.Data.TabIndex = 12;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(1174, 15);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 212);
+            this.listBox1.TabIndex = 13;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // delete_button
+            // 
+            this.delete_button.Location = new System.Drawing.Point(1193, 269);
+            this.delete_button.Name = "delete_button";
+            this.delete_button.Size = new System.Drawing.Size(84, 30);
+            this.delete_button.TabIndex = 14;
+            this.delete_button.Text = "DELETE ALL";
+            this.delete_button.UseVisualStyleBackColor = true;
+            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
+            // 
+            // update_button
+            // 
+            this.update_button.Location = new System.Drawing.Point(1193, 305);
+            this.update_button.Name = "update_button";
+            this.update_button.Size = new System.Drawing.Size(84, 30);
+            this.update_button.TabIndex = 15;
+            this.update_button.Text = "UPDATE";
+            this.update_button.UseVisualStyleBackColor = true;
+            this.update_button.Click += new System.EventHandler(this.update_button_Click);
+            // 
+            // insert_button
+            // 
+            this.insert_button.Location = new System.Drawing.Point(1193, 344);
+            this.insert_button.Name = "insert_button";
+            this.insert_button.Size = new System.Drawing.Size(84, 30);
+            this.insert_button.TabIndex = 16;
+            this.insert_button.Text = "INSERT";
+            this.insert_button.UseVisualStyleBackColor = true;
+            this.insert_button.Click += new System.EventHandler(this.insert_button_Click);
+            // 
+            // save_with_data_table
+            // 
+            this.save_with_data_table.Location = new System.Drawing.Point(265, 558);
+            this.save_with_data_table.Name = "save_with_data_table";
+            this.save_with_data_table.Size = new System.Drawing.Size(113, 23);
+            this.save_with_data_table.TabIndex = 17;
+            this.save_with_data_table.Text = "Save with data table";
+            this.save_with_data_table.UseVisualStyleBackColor = true;
+            this.save_with_data_table.Click += new System.EventHandler(this.save_with_data_table_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1301, 644);
+            this.Controls.Add(this.save_with_data_table);
+            this.Controls.Add(this.insert_button);
+            this.Controls.Add(this.update_button);
+            this.Controls.Add(this.delete_button);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.Data);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.load_last_rezult);
@@ -312,6 +372,11 @@
         private System.Windows.Forms.Button load_last_rezult;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox Data;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button delete_button;
+        private System.Windows.Forms.Button update_button;
+        private System.Windows.Forms.Button insert_button;
+        private System.Windows.Forms.Button save_with_data_table;
     }
 }
 
