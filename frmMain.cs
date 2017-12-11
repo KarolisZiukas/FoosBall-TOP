@@ -228,12 +228,8 @@ namespace RedBallTracker
                 connection.ConnectionString = connectionString;
 
                 connection.Open();
-                //SqlDataAdapter da = new SqlDataAdapter();
-                //SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.scores", connection2);
-                //da.SelectCommand = sqlCommand;
-                //DataSet dataSet = new DataSet();
-                //da.Fill(dataSet);
-                //MessageBox.Show(dataSet.Tables[0].Rows[0]["redTeam"].ToString());
+                DataSet dataSet = DataSetFill.ConnectToData(connectionString);
+                MessageBox.Show(dataSet.Tables[0].Rows[0]["redTeam"].ToString());
                 selectQuerry(querryString);
 
             }
