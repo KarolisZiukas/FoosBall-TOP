@@ -12,23 +12,34 @@ namespace RedBallTracker
         static void Main()
         {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+
+            IntroductionForm formObject = new IntroductionForm();
+
+            Application.Run(formObject);
+
+            if(formObject.GetFirstPlayerName() != string.Empty)
+            {
+                Application.Run(new frmMain());
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new frmMain());
         }
     }
 }

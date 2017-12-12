@@ -37,7 +37,6 @@
             this.loadScore = new System.Windows.Forms.Button();
             this.ibOriginal = new Emgu.CV.UI.ImageBox();
             this.ibThresh = new Emgu.CV.UI.ImageBox();
-            this.bluePlayers = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -48,38 +47,39 @@
             this.red_team_last_result = new System.Windows.Forms.TextBox();
             this.last_match_time = new System.Windows.Forms.TextBox();
             this.load_last_rezult = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.Data = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.delete_button = new System.Windows.Forms.Button();
             this.update_button = new System.Windows.Forms.Button();
             this.insert_button = new System.Windows.Forms.Button();
             this.save_with_data_table = new System.Windows.Forms.Button();
             this.buttonGroup = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.delete_button = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tlpOuter.SuspendLayout();
-            this.tlpInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ibThresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpOuter
             // 
             this.tlpOuter.ColumnCount = 2;
-            this.tlpOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.84801F));
+            this.tlpOuter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.15199F));
             this.tlpOuter.Controls.Add(this.tlpInner, 0, 1);
             this.tlpOuter.Controls.Add(this.ibOriginal, 0, 0);
             this.tlpOuter.Controls.Add(this.ibThresh, 1, 0);
-            this.tlpOuter.Controls.Add(this.bluePlayers, 1, 1);
             this.tlpOuter.Location = new System.Drawing.Point(12, 12);
             this.tlpOuter.Name = "tlpOuter";
             this.tlpOuter.RowCount = 2;
-            this.tlpOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.4898F));
-            this.tlpOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.5102F));
+            this.tlpOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 97.1134F));
+            this.tlpOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.886598F));
             this.tlpOuter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOuter.Size = new System.Drawing.Size(1158, 490);
+            this.tlpOuter.Size = new System.Drawing.Size(1158, 375);
             this.tlpOuter.TabIndex = 0;
             // 
             // tlpInner
@@ -87,22 +87,18 @@
             this.tlpInner.ColumnCount = 2;
             this.tlpInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpInner.Controls.Add(this.loadedScore, 1, 0);
-            this.tlpInner.Controls.Add(this.rTeamBox, 0, 1);
-            this.tlpInner.Controls.Add(this.lTeamBox, 1, 1);
-            this.tlpInner.Controls.Add(this.loadScore, 0, 0);
-            this.tlpInner.Location = new System.Drawing.Point(3, 368);
+            this.tlpInner.Location = new System.Drawing.Point(3, 367);
             this.tlpInner.Name = "tlpInner";
             this.tlpInner.RowCount = 2;
             this.tlpInner.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInner.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpInner.Size = new System.Drawing.Size(573, 100);
+            this.tlpInner.Size = new System.Drawing.Size(573, 5);
             this.tlpInner.TabIndex = 0;
             // 
             // loadedScore
             // 
             this.loadedScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadedScore.Location = new System.Drawing.Point(289, 3);
+            this.loadedScore.Location = new System.Drawing.Point(887, 495);
             this.loadedScore.Name = "loadedScore";
             this.loadedScore.Size = new System.Drawing.Size(267, 32);
             this.loadedScore.TabIndex = 1;
@@ -110,18 +106,19 @@
             // rTeamBox
             // 
             this.rTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rTeamBox.Location = new System.Drawing.Point(3, 53);
+            this.rTeamBox.Location = new System.Drawing.Point(216, 427);
             this.rTeamBox.Name = "rTeamBox";
             this.rTeamBox.ShortcutsEnabled = false;
-            this.rTeamBox.Size = new System.Drawing.Size(280, 32);
+            this.rTeamBox.Size = new System.Drawing.Size(231, 32);
             this.rTeamBox.TabIndex = 2;
             this.rTeamBox.Text = "Blue team score: 0";
             // 
             // lTeamBox
             // 
+            this.lTeamBox.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.lTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTeamBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lTeamBox.Location = new System.Drawing.Point(289, 53);
+            this.lTeamBox.ForeColor = System.Drawing.Color.Black;
+            this.lTeamBox.Location = new System.Drawing.Point(216, 489);
             this.lTeamBox.Name = "lTeamBox";
             this.lTeamBox.Size = new System.Drawing.Size(226, 32);
             this.lTeamBox.TabIndex = 1;
@@ -130,9 +127,9 @@
             // loadScore
             // 
             this.loadScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadScore.Location = new System.Drawing.Point(3, 3);
+            this.loadScore.Location = new System.Drawing.Point(863, 570);
             this.loadScore.Name = "loadScore";
-            this.loadScore.Size = new System.Drawing.Size(155, 44);
+            this.loadScore.Size = new System.Drawing.Size(155, 41);
             this.loadScore.TabIndex = 3;
             this.loadScore.Text = "load score";
             this.loadScore.UseVisualStyleBackColor = true;
@@ -144,7 +141,7 @@
             this.ibOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ibOriginal.Location = new System.Drawing.Point(3, 3);
             this.ibOriginal.Name = "ibOriginal";
-            this.ibOriginal.Size = new System.Drawing.Size(573, 359);
+            this.ibOriginal.Size = new System.Drawing.Size(826, 358);
             this.ibOriginal.TabIndex = 2;
             this.ibOriginal.TabStop = false;
             // 
@@ -152,26 +149,15 @@
             // 
             this.ibThresh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ibThresh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ibThresh.Location = new System.Drawing.Point(582, 3);
+            this.ibThresh.Location = new System.Drawing.Point(835, 3);
             this.ibThresh.Name = "ibThresh";
-            this.ibThresh.Size = new System.Drawing.Size(573, 359);
+            this.ibThresh.Size = new System.Drawing.Size(320, 358);
             this.ibThresh.TabIndex = 2;
             this.ibThresh.TabStop = false;
             // 
-            // bluePlayers
-            // 
-            this.bluePlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bluePlayers.Location = new System.Drawing.Point(582, 368);
-            this.bluePlayers.Name = "bluePlayers";
-            this.bluePlayers.Size = new System.Drawing.Size(155, 47);
-            this.bluePlayers.TabIndex = 3;
-            this.bluePlayers.Text = "Blue team";
-            this.bluePlayers.UseVisualStyleBackColor = true;
-            this.bluePlayers.Click += new System.EventHandler(this.bluePlayers_Click);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(755, 527);
+            this.button1.Location = new System.Drawing.Point(1531, 551);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 47);
             this.button1.TabIndex = 1;
@@ -181,14 +167,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(649, 527);
+            this.textBox1.Location = new System.Drawing.Point(1425, 551);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(649, 554);
+            this.textBox2.Location = new System.Drawing.Point(1425, 578);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 3;
@@ -196,7 +182,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(594, 527);
+            this.label1.Location = new System.Drawing.Point(1370, 551);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 4;
@@ -205,7 +191,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(594, 560);
+            this.label2.Location = new System.Drawing.Point(1370, 584);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 5;
@@ -213,35 +199,35 @@
             // 
             // blue_team_last_result
             // 
-            this.blue_team_last_result.Location = new System.Drawing.Point(18, 526);
+            this.blue_team_last_result.Location = new System.Drawing.Point(909, 524);
             this.blue_team_last_result.Name = "blue_team_last_result";
             this.blue_team_last_result.Size = new System.Drawing.Size(100, 20);
             this.blue_team_last_result.TabIndex = 6;
             // 
             // last_match_result
             // 
-            this.last_match_result.Location = new System.Drawing.Point(18, 560);
+            this.last_match_result.Location = new System.Drawing.Point(909, 558);
             this.last_match_result.Name = "last_match_result";
             this.last_match_result.Size = new System.Drawing.Size(100, 20);
             this.last_match_result.TabIndex = 7;
             // 
             // red_team_last_result
             // 
-            this.red_team_last_result.Location = new System.Drawing.Point(133, 526);
+            this.red_team_last_result.Location = new System.Drawing.Point(1024, 524);
             this.red_team_last_result.Name = "red_team_last_result";
             this.red_team_last_result.Size = new System.Drawing.Size(100, 20);
             this.red_team_last_result.TabIndex = 8;
             // 
             // last_match_time
             // 
-            this.last_match_time.Location = new System.Drawing.Point(133, 559);
+            this.last_match_time.Location = new System.Drawing.Point(1024, 557);
             this.last_match_time.Name = "last_match_time";
             this.last_match_time.Size = new System.Drawing.Size(100, 20);
             this.last_match_time.TabIndex = 9;
             // 
             // load_last_rezult
             // 
-            this.load_last_rezult.Location = new System.Drawing.Point(265, 523);
+            this.load_last_rezult.Location = new System.Drawing.Point(1041, 547);
             this.load_last_rezult.Name = "load_last_rezult";
             this.load_last_rezult.Size = new System.Drawing.Size(113, 23);
             this.load_last_rezult.TabIndex = 10;
@@ -249,19 +235,9 @@
             this.load_last_rezult.UseVisualStyleBackColor = true;
             this.load_last_rezult.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1193, 233);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 30);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "SELECT";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // Data
             // 
-            this.Data.Location = new System.Drawing.Point(430, 527);
+            this.Data.Location = new System.Drawing.Point(1206, 551);
             this.Data.Multiline = true;
             this.Data.Name = "Data";
             this.Data.Size = new System.Drawing.Size(111, 74);
@@ -275,16 +251,6 @@
             this.listBox1.Size = new System.Drawing.Size(120, 212);
             this.listBox1.TabIndex = 13;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // delete_button
-            // 
-            this.delete_button.Location = new System.Drawing.Point(1193, 269);
-            this.delete_button.Name = "delete_button";
-            this.delete_button.Size = new System.Drawing.Size(84, 30);
-            this.delete_button.TabIndex = 14;
-            this.delete_button.Text = "DELETE ALL";
-            this.delete_button.UseVisualStyleBackColor = true;
-            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
             // 
             // update_button
             // 
@@ -308,7 +274,7 @@
             // 
             // save_with_data_table
             // 
-            this.save_with_data_table.Location = new System.Drawing.Point(265, 558);
+            this.save_with_data_table.Location = new System.Drawing.Point(1041, 582);
             this.save_with_data_table.Name = "save_with_data_table";
             this.save_with_data_table.Size = new System.Drawing.Size(113, 23);
             this.save_with_data_table.TabIndex = 17;
@@ -332,7 +298,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(84, 35);
             this.button3.TabIndex = 19;
-            this.button3.Text = "button3";
+            this.button3.Text = "Skip Take";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -342,17 +308,60 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(84, 30);
             this.button4.TabIndex = 20;
-            this.button4.Text = "button4";
+            this.button4.Text = "Aggregate";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1193, 499);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(84, 28);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Join";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // delete_button
+            // 
+            this.delete_button.Location = new System.Drawing.Point(1193, 269);
+            this.delete_button.Name = "delete_button";
+            this.delete_button.Size = new System.Drawing.Size(84, 30);
+            this.delete_button.TabIndex = 14;
+            this.delete_button.Text = "DELETE ALL";
+            this.delete_button.UseVisualStyleBackColor = true;
+            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1193, 233);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 30);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "SELECT";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(-28, -14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(727, 661);
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 644);
+            this.ClientSize = new System.Drawing.Size(662, 670);
+            this.Controls.Add(this.lTeamBox);
+            this.Controls.Add(this.rTeamBox);
+            this.Controls.Add(this.loadedScore);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
+            this.Controls.Add(this.loadScore);
             this.Controls.Add(this.buttonGroup);
             this.Controls.Add(this.save_with_data_table);
             this.Controls.Add(this.insert_button);
@@ -372,14 +381,14 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tlpOuter);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "frmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tlpOuter.ResumeLayout(false);
-            this.tlpInner.ResumeLayout(false);
-            this.tlpInner.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ibThresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,7 +404,6 @@
         private System.Windows.Forms.Button loadScore;
         public Emgu.CV.UI.ImageBox ibOriginal;
         public Emgu.CV.UI.ImageBox ibThresh;
-        private System.Windows.Forms.Button bluePlayers;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
@@ -406,16 +414,18 @@
         private System.Windows.Forms.TextBox red_team_last_result;
         private System.Windows.Forms.TextBox last_match_time;
         private System.Windows.Forms.Button load_last_rezult;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox Data;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button delete_button;
         private System.Windows.Forms.Button update_button;
         private System.Windows.Forms.Button insert_button;
         private System.Windows.Forms.Button save_with_data_table;
         private System.Windows.Forms.Button buttonGroup;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button delete_button;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

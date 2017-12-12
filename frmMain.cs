@@ -36,6 +36,8 @@ namespace RedBallTracker
         string selectParameter;
         string querryString = "select * from dbo.scores";
 
+        IntroductionForm introForm; // Second form with the introduction
+
 
 
         static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
@@ -49,26 +51,41 @@ namespace RedBallTracker
 
         public frmMain()
         {
-
+            //introForm = new IntroductionForm();
 
             InitializeComponent();
             string Player1 = string.Empty;
             string Player2 = string.Empty;
 
+            IntroductionForm formObject = new IntroductionForm();
+
+            //Application.Run(introForm);
+
+
+
+            //Player1 = formObject.GetFirstPlayerName();
+            //Player2 = formObject.GetSecondPlayerName();
+
             HttpPut put = new HttpPut();
             put.Put();
             int flag = 1;
+
+            if(Player1 != string.Empty && Player2 != string.Empty)
+            { 
+}
+
             do
             {
 
                 try
                 {
                     //TODO Karolis Optional variables
-                    new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
-                    new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
+                    //new OpeningDialogs().inputBox(Constants.EnterFirstPlayerName, Constants.FirstPlayerNameIs, ref Player1, Constants.SubmitOption);
+                    //new OpeningDialogs().inputBox(Constants.EnterSecondPlayerName, Constants.SecondPlayerNameIs, ref Player2);
+
                     checkIfStringIsEmpty(Player1);
                     checkIfStringIsEmpty(Player2);
-                    PlayersStruct.name.Player1 = Player1;
+                    PlayersStruct.name.Player1 = formObject.GetFirstPlayerName().ToString();
                     PlayersStruct.name.Player2 = Player2;
                     flag = 1;
                 }
@@ -170,10 +187,10 @@ namespace RedBallTracker
 
         public void checkIfStringIsEmpty(string emptyString)
         {
-            if (emptyString == "")
-            {
-                throw new EmptyNameException();
-            }
+            //if (emptyString == "")
+            //{
+            //    throw new EmptyNameException();
+            //}
         }
 
         // TODO: Adomas configuration files - User
@@ -186,6 +203,8 @@ namespace RedBallTracker
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            pictureBox1.ImageLocation = "..\\projectFiles\\grass.jpg"; //path to image
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             // Configuration for title
             this.Text = Settings.Default["Title"].ToString();
             button1.Text = Settings.Default["Button"].ToString();
@@ -211,6 +230,7 @@ namespace RedBallTracker
         {
             string provider = ConfigurationManager.AppSettings["scores"];
             connectionString = ConfigurationManager.AppSettings["connectionString"];
+            
 
             factory = DbProviderFactories.GetFactory(provider);
 
@@ -339,9 +359,14 @@ namespace RedBallTracker
             var query = from b in database.Scores
                         orderby b.date ascending
                         select b.matchResult;
-            var sum = query.Aggregate((a, b) => a + ',' + b);
+            var sum = query.Aggregate((a, b) => a + b);
 
             listBox1.Items.Add(sum);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
