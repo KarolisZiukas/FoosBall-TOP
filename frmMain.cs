@@ -35,8 +35,9 @@ namespace RedBallTracker
         string connectionString;
         string selectParameter;
         string querryString = "select * from dbo.scores";
-
+        
         IntroductionForms introForm; // Second form with the introduction
+
 
         static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
         //ToDo Karolis: Lazy Initialization
@@ -49,7 +50,10 @@ namespace RedBallTracker
 
         public frmMain()
         {
+
             introForm = new IntroductionForms();
+=======
+
 
             InitializeComponent();
             string Player1 = string.Empty;
@@ -61,16 +65,16 @@ namespace RedBallTracker
 
 
 
+
             Player1 = formObject.GetFirstPlayerName();
             Player2 = formObject.GetSecondPlayerName();
+
 
             HttpPut put = new HttpPut();
             put.Put();
             int flag = 1;
 
-//            if(Player1 != string.Empty && Player2 != string.Empty)
-//            {   
-//}
+
             do
             {
 
@@ -82,6 +86,7 @@ namespace RedBallTracker
 
                     checkIfStringIsEmpty(Player1);
                     checkIfStringIsEmpty(Player2);
+
                     //PlayersStruct.name.Player1 = formObject.GetFirstPlayerName().ToString();
                     PlayersStruct.name.Player2 = Player2;
                     flag = 1;
@@ -200,9 +205,11 @@ namespace RedBallTracker
         {
             pictureBox1.ImageLocation = "..\\projectFiles\\grass.jpg"; //path to image
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+
             //Configuration for title
 
            this.Text = Settings.Default["Title"].ToString();
+
             button1.Text = Settings.Default["Button"].ToString();
         }
 
