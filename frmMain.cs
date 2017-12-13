@@ -36,9 +36,7 @@ namespace RedBallTracker
         string selectParameter;
         string querryString = "select * from dbo.scores";
 
-        IntroductionForm introForm; // Second form with the introduction
-
-
+        IntroductionForms introForm; // Second form with the introduction
 
         static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
         //ToDo Karolis: Lazy Initialization
@@ -51,29 +49,28 @@ namespace RedBallTracker
 
         public frmMain()
         {
-            //introForm = new IntroductionForm();
+            introForm = new IntroductionForms();
 
             InitializeComponent();
             string Player1 = string.Empty;
             string Player2 = string.Empty;
 
-            IntroductionForm formObject = new IntroductionForm();
+            IntroductionForms formObject = new IntroductionForms();
 
             //Application.Run(introForm);
 
 
 
-            //Player1 = formObject.GetFirstPlayerName();
-            //Player2 = formObject.GetSecondPlayerName();
+            Player1 = formObject.GetFirstPlayerName();
+            Player2 = formObject.GetSecondPlayerName();
 
             HttpPut put = new HttpPut();
             put.Put();
             int flag = 1;
 
-            if(Player1 != string.Empty && Player2 != string.Empty)
-            { 
-}
-
+//            if(Player1 != string.Empty && Player2 != string.Empty)
+//            {   
+//}
             do
             {
 
@@ -85,7 +82,7 @@ namespace RedBallTracker
 
                     checkIfStringIsEmpty(Player1);
                     checkIfStringIsEmpty(Player2);
-                    PlayersStruct.name.Player1 = formObject.GetFirstPlayerName().ToString();
+                    //PlayersStruct.name.Player1 = formObject.GetFirstPlayerName().ToString();
                     PlayersStruct.name.Player2 = Player2;
                     flag = 1;
                 }
@@ -95,8 +92,6 @@ namespace RedBallTracker
                     flag = 0;
                 }
             } while (flag == 0);
-
-
 
             try
             {
@@ -205,8 +200,9 @@ namespace RedBallTracker
         {
             pictureBox1.ImageLocation = "..\\projectFiles\\grass.jpg"; //path to image
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            // Configuration for title
-            this.Text = Settings.Default["Title"].ToString();
+            //Configuration for title
+
+           this.Text = Settings.Default["Title"].ToString();
             button1.Text = Settings.Default["Button"].ToString();
         }
 
@@ -367,6 +363,11 @@ namespace RedBallTracker
         private void button5_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void tlpOuter_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
