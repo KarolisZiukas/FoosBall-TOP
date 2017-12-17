@@ -11,18 +11,18 @@ namespace RedBallTracker
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IntroductionForm formObject = new IntroductionForm();
 
-            Application.Run(formObject);
+            IntroductionForms objectForm = new IntroductionForms();
 
-            if(formObject.GetFirstPlayerName() != string.Empty)
-            {
+            Application.Run(new IntroductionForms());
+            //if(objectForm.GetFirstPlayerName() != "" && objectForm.GetSecondPlayerName() != "")
+            //{
+                //objectForm.Hide();
                 Application.Run(new frmMain());
-            }
+            //}
 
 
 
@@ -33,13 +33,6 @@ namespace RedBallTracker
 
 
 
-
-
-
-
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmMain());
         }
     }
 }
