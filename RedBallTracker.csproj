@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="BallTracking.cs" />
     <Compile Include="BlueTeamFigures.cs" />
+    <Compile Include="b\Table.cs" />
     <Compile Include="EmptyNameException.cs" />
     <Compile Include="HttpListener.cs" />
     <Compile Include="ExtensionMethods.cs" />

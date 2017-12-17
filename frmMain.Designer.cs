@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tlpOuter = new System.Windows.Forms.TableLayoutPanel();
             this.tlpInner = new System.Windows.Forms.TableLayoutPanel();
+            this.ibOriginal = new Emgu.CV.UI.ImageBox();
+            this.ibThresh = new Emgu.CV.UI.ImageBox();
             this.loadedScore = new System.Windows.Forms.TextBox();
             this.rTeamBox = new System.Windows.Forms.TextBox();
             this.lTeamBox = new System.Windows.Forms.TextBox();
             this.loadScore = new System.Windows.Forms.Button();
-            this.ibOriginal = new Emgu.CV.UI.ImageBox();
-            this.ibThresh = new Emgu.CV.UI.ImageBox();
             this.bluePlayers = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -59,6 +59,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.tlpOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ibThresh)).BeginInit();
@@ -96,45 +100,6 @@
             this.tlpInner.Size = new System.Drawing.Size(573, 1);
             this.tlpInner.TabIndex = 0;
             // 
-            // loadedScore
-            // 
-            this.loadedScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadedScore.Location = new System.Drawing.Point(1550, 537);
-            this.loadedScore.Name = "loadedScore";
-            this.loadedScore.Size = new System.Drawing.Size(267, 32);
-            this.loadedScore.TabIndex = 1;
-            // 
-            // rTeamBox
-            // 
-            this.rTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rTeamBox.Location = new System.Drawing.Point(216, 440);
-            this.rTeamBox.Name = "rTeamBox";
-            this.rTeamBox.ShortcutsEnabled = false;
-            this.rTeamBox.Size = new System.Drawing.Size(226, 32);
-            this.rTeamBox.TabIndex = 2;
-            this.rTeamBox.Text = "Blue team score: 0";
-            // 
-            // lTeamBox
-            // 
-            this.lTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTeamBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lTeamBox.Location = new System.Drawing.Point(216, 494);
-            this.lTeamBox.Name = "lTeamBox";
-            this.lTeamBox.Size = new System.Drawing.Size(226, 32);
-            this.lTeamBox.TabIndex = 1;
-            this.lTeamBox.Text = "Red team score: 0";
-            // 
-            // loadScore
-            // 
-            this.loadScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadScore.Location = new System.Drawing.Point(1264, 537);
-            this.loadScore.Name = "loadScore";
-            this.loadScore.Size = new System.Drawing.Size(155, 44);
-            this.loadScore.TabIndex = 3;
-            this.loadScore.Text = "load score";
-            this.loadScore.UseVisualStyleBackColor = true;
-            this.loadScore.Click += new System.EventHandler(this.loadScore_Click);
-            // 
             // ibOriginal
             // 
             this.ibOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -154,6 +119,45 @@
             this.ibThresh.Size = new System.Drawing.Size(527, 370);
             this.ibThresh.TabIndex = 2;
             this.ibThresh.TabStop = false;
+            // 
+            // loadedScore
+            // 
+            this.loadedScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadedScore.Location = new System.Drawing.Point(1550, 537);
+            this.loadedScore.Name = "loadedScore";
+            this.loadedScore.Size = new System.Drawing.Size(267, 32);
+            this.loadedScore.TabIndex = 1;
+            // 
+            // rTeamBox
+            // 
+            this.rTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rTeamBox.Location = new System.Drawing.Point(47, 418);
+            this.rTeamBox.Name = "rTeamBox";
+            this.rTeamBox.ShortcutsEnabled = false;
+            this.rTeamBox.Size = new System.Drawing.Size(226, 32);
+            this.rTeamBox.TabIndex = 2;
+            this.rTeamBox.Text = "Blue team score: 0";
+            // 
+            // lTeamBox
+            // 
+            this.lTeamBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTeamBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lTeamBox.Location = new System.Drawing.Point(47, 465);
+            this.lTeamBox.Name = "lTeamBox";
+            this.lTeamBox.Size = new System.Drawing.Size(226, 32);
+            this.lTeamBox.TabIndex = 1;
+            this.lTeamBox.Text = "Red team score: 0";
+            // 
+            // loadScore
+            // 
+            this.loadScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadScore.Location = new System.Drawing.Point(1264, 537);
+            this.loadScore.Name = "loadScore";
+            this.loadScore.Size = new System.Drawing.Size(155, 44);
+            this.loadScore.TabIndex = 3;
+            this.loadScore.Text = "load score";
+            this.loadScore.UseVisualStyleBackColor = true;
+            this.loadScore.Click += new System.EventHandler(this.loadScore_Click);
             // 
             // bluePlayers
             // 
@@ -346,17 +350,56 @@
             // pictureBox1
             // 
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(-91, -1);
+            this.pictureBox1.Location = new System.Drawing.Point(-111, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(789, 664);
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(648, 601);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(57, 20);
+            this.textBox3.TabIndex = 22;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(117, 525);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(174, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Different scenarios for matches end";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(505, 427);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(119, 23);
+            this.button5.TabIndex = 24;
+            this.button5.Text = "Count the scenarios";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(504, 481);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(120, 95);
+            this.listBox2.TabIndex = 25;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 644);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.lTeamBox);
             this.Controls.Add(this.rTeamBox);
             this.Controls.Add(this.loadedScore);
@@ -428,6 +471,10 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 

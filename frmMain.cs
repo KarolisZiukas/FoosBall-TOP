@@ -9,6 +9,7 @@ using System.Linq;
 using System.Data.Common;
 using System.Configuration;
 using System.Data;
+using System.Text;
 
 namespace RedBallTracker
 {
@@ -47,12 +48,12 @@ namespace RedBallTracker
         public static readonly HttpClient client = new HttpClient();
         public static string url = "http://localhost:5000/api/scores/";
         Model1 database = new Model1();
+        private object sbAccumulator;
 
         public frmMain()
         {
 
             introForm = new IntroductionForms();
-=======
 
 
             InitializeComponent();
@@ -335,7 +336,7 @@ namespace RedBallTracker
         private void buttonGroup_Click(object sender, EventArgs e)
         {
             var query = from b in database.Scores
-                        group b by b.redTeam into r
+                        group b by b.matchResult into r
                         select r;
 
             foreach (var item in query)
@@ -373,6 +374,29 @@ namespace RedBallTracker
         }
 
         private void tlpOuter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            var query = from b in database.Scores
+                        group b by b.matchResult into r
+                        select r;
+
+            foreach (var item in query)
+            {
+                listBox2.Items.Add(item.Key);
+                
+                foreach(var val in item)
+                {
+                    listBox2.Items.Add("Red Team: " + val.redTeam);
+                    listBox2.Items.Add("Blue Team: " + val.blueTeam);
+                }
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
