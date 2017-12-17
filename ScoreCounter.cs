@@ -90,8 +90,8 @@ namespace RedBallTracker
 
         protected virtual void OnGoalScored()
         {
-            HttpPut put = new HttpPut();
-            put.Put();
+            HttpCommand post = new HttpCommand();
+            post.Post();
             GoalScored?.Invoke(this, EventArgs.Empty);
         }
     }

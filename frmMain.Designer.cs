@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tlpOuter = new System.Windows.Forms.TableLayoutPanel();
             this.tlpInner = new System.Windows.Forms.TableLayoutPanel();
+            this.ibOriginal = new Emgu.CV.UI.ImageBox();
+            this.ibThresh = new Emgu.CV.UI.ImageBox();
             this.loadedScore = new System.Windows.Forms.TextBox();
             this.rTeamBox = new System.Windows.Forms.TextBox();
             this.lTeamBox = new System.Windows.Forms.TextBox();
             this.loadScore = new System.Windows.Forms.Button();
-            this.ibOriginal = new Emgu.CV.UI.ImageBox();
-            this.ibThresh = new Emgu.CV.UI.ImageBox();
             this.bluePlayers = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -59,6 +59,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.tlpOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ibThresh)).BeginInit();
@@ -95,6 +96,26 @@
             this.tlpInner.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInner.Size = new System.Drawing.Size(573, 1);
             this.tlpInner.TabIndex = 0;
+            // 
+            // ibOriginal
+            // 
+            this.ibOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ibOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ibOriginal.Location = new System.Drawing.Point(3, 3);
+            this.ibOriginal.Name = "ibOriginal";
+            this.ibOriginal.Size = new System.Drawing.Size(619, 370);
+            this.ibOriginal.TabIndex = 2;
+            this.ibOriginal.TabStop = false;
+            // 
+            // ibThresh
+            // 
+            this.ibThresh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ibThresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ibThresh.Location = new System.Drawing.Point(628, 3);
+            this.ibThresh.Name = "ibThresh";
+            this.ibThresh.Size = new System.Drawing.Size(527, 370);
+            this.ibThresh.TabIndex = 2;
+            this.ibThresh.TabStop = false;
             // 
             // loadedScore
             // 
@@ -134,26 +155,6 @@
             this.loadScore.Text = "load score";
             this.loadScore.UseVisualStyleBackColor = true;
             this.loadScore.Click += new System.EventHandler(this.loadScore_Click);
-            // 
-            // ibOriginal
-            // 
-            this.ibOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ibOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ibOriginal.Location = new System.Drawing.Point(3, 3);
-            this.ibOriginal.Name = "ibOriginal";
-            this.ibOriginal.Size = new System.Drawing.Size(619, 370);
-            this.ibOriginal.TabIndex = 2;
-            this.ibOriginal.TabStop = false;
-            // 
-            // ibThresh
-            // 
-            this.ibThresh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ibThresh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ibThresh.Location = new System.Drawing.Point(628, 3);
-            this.ibThresh.Name = "ibThresh";
-            this.ibThresh.Size = new System.Drawing.Size(527, 370);
-            this.ibThresh.TabIndex = 2;
-            this.ibThresh.TabStop = false;
             // 
             // bluePlayers
             // 
@@ -352,11 +353,22 @@
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(256, 609);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(112, 23);
+            this.button5.TabIndex = 22;
+            this.button5.Text = "Match history";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.MatchHistory_Click_1);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 644);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.lTeamBox);
             this.Controls.Add(this.rTeamBox);
             this.Controls.Add(this.loadedScore);
@@ -428,6 +440,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button5;
     }
 }
 

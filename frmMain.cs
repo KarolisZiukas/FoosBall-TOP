@@ -28,7 +28,6 @@ namespace RedBallTracker
         SoundService soundService = new SoundService();  //subscriber
         private DbProviderFactory factory;
         DbConnection connection;
-        SqlConnection connection2;
         VideoCapture capWebcam;
         DataTable scoresDatatable;
         DbCommand command;
@@ -38,13 +37,10 @@ namespace RedBallTracker
         
         IntroductionForms introForm; // Second form with the introduction
 
-
-        static System.Net.HttpListener _httpListener = new System.Net.HttpListener();
         //ToDo Karolis: Lazy Initialization
         Lazy<BlueTeamFigures> blueTeamFigures = new Lazy<BlueTeamFigures>();
         BallTracking tracker = new BallTracking();
         private static string VIDEO_DIR = "..\\projectFiles\\testvideo3.mp4";
-        public static readonly HttpClient client = new HttpClient();
         public static string url = "http://localhost:5000/api/scores/";
         Model1 database = new Model1();
 
@@ -52,7 +48,6 @@ namespace RedBallTracker
         {
 
             introForm = new IntroductionForms();
-=======
 
 
             InitializeComponent();
@@ -70,10 +65,10 @@ namespace RedBallTracker
             Player2 = formObject.GetSecondPlayerName();
 
 
-            HttpPut put = new HttpPut();
-            put.Put();
+            HttpCommand post = new HttpCommand();
+            post.Post();
             int flag = 1;
-
+            
 
             do
             {
@@ -375,6 +370,12 @@ namespace RedBallTracker
         private void tlpOuter_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MatchHistory_Click_1(object sender, EventArgs e)
+        {
+            MatchHistory history = new MatchHistory();
+            history.Show();
         }
     }
 }

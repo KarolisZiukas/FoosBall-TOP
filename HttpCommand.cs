@@ -4,7 +4,7 @@ using System.IO;
 
 namespace RedBallTracker
 {
-    class HttpPut
+    class HttpCommand
     {
         private class Output
         {
@@ -17,7 +17,7 @@ namespace RedBallTracker
             }
         }
 
-        public void Put()
+        public void Post()
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(frmMain.url);
             httpWebRequest.ContentType = "application/json";
