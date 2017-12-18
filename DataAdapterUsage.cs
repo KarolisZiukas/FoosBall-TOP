@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,22 +11,24 @@ namespace RedBallTracker
 {
     class DataAdapterUsage
     {
-        public static DataSet Connect(string connectionString)
+        public static DataSet Adapter(string connectionString)
         {
+            //DbProviderFactory factory = DbProviderFactories.GetFactory(provider);
+
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlDataAdapter adapter = new SqlDataAdapter();
-
-                adapter.TableMappings.Add("ResultTable", "ScoreDB");
-
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT MatchResult FROM dbo.ScoreDB;", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                DataSet dataSet = new DataSet("History");
+                adapter.TableMappings.Add("Score", "History");
+
+                SqlCommand command = new SqlCommand("SELECT MatchResult FROM dbo.Score;", connection);
                 command.CommandType = CommandType.Text;
                 adapter.SelectCommand = command;
 
-                DataSet dataSet = new DataSet("Result");
                 adapter.Fill(dataSet);
-
+                connection.Close();
                 return dataSet;
             }
         }

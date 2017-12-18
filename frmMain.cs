@@ -374,8 +374,8 @@ namespace RedBallTracker
 
         private void MatchHistory_Click_1(object sender, EventArgs e)
         {
-            MatchHistory history = new MatchHistory();
-            history.Show();
+            /*MatchHistory history = new MatchHistory();
+            history.Show();*/
         }
     }
 }

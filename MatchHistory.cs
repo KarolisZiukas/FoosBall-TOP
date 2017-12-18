@@ -13,18 +13,26 @@ namespace RedBallTracker
 {
     public partial class MatchHistory : Form
     {
-        private string connectionString;
+        private string  connectionString;
         public MatchHistory()
         {
 
             InitializeComponent();
+            string provider = ConfigurationManager.AppSettings["scores"];
             connectionString = ConfigurationManager.AppSettings["connectionString"];
-            DataSet dataSet = DataAdapterUsage.Connect(connectionString);
 
-            DataGridView DGV = new DataGridView();
-            DGV.DataSource = dataSet;
-            this.Controls.Add(DGV);
-            DGV.Show();
+           
+            DataSet dataSet = DataAdapterUsage.Adapter(connectionString);
+            //TextBox box = new TextBox();
+            //box.Text = filler.ToString();
+           
+                DataGridView DGV = new DataGridView();
+                DGV.DataSource = dataSet;
+                Controls.Add(DGV);
+                DGV.Show();
+ 
+            //Controls.Add(box);
+            //box.Show();
         }
     }
 }
