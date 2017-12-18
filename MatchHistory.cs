@@ -27,7 +27,7 @@ namespace RedBallTracker
             //box.Text = filler.ToString();
            
                 DataGridView DGV = new DataGridView();
-                DGV.DataSource = dataSet;
+                DGV.DataSource = dataSet.Tables[0];
                 Controls.Add(DGV);
                 DGV.Show();
  
